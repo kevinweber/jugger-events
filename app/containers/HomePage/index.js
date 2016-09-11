@@ -32,6 +32,7 @@ import H2 from 'components/H2';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
+import Autorenew from 'components/Icons';
 
 import styles from './styles.css';
 
@@ -40,9 +41,7 @@ export class HomePage extends React.Component {
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    if (this.props.username && this.props.username.trim().length > 0) {
-      this.props.onSubmitForm();
-    }
+    this.props.dispatch(this.props.loadRepos());
   }
   /**
    * Changes the route
@@ -98,24 +97,11 @@ export class HomePage extends React.Component {
           </section>
           <section className={styles.textSection}>
             <H2>
-              <FormattedMessage {...messages.trymeHeader} />
+              <FormattedMessage {...messages.upcomingHeader} />
+              <span className={styles.refresh}>
+                <Autorenew onClick={this.props.refreshPosts} />
+              </span>
             </H2>
-            <form className={styles.usernameForm} onSubmit={this.props.onSubmitForm}>
-              <label htmlFor="username">
-                <FormattedMessage {...messages.trymeMessage} />
-                <span className={styles.atPrefix}>
-                  <FormattedMessage {...messages.trymeAtPrefix} />
-                </span>
-                <input
-                  id="username"
-                  className={styles.input}
-                  type="text"
-                  placeholder="mxstbr"
-                  value={this.props.username}
-                  onChange={this.props.onChangeUsername}
-                />
-              </label>
-            </form>
             {mainContent}
           </section>
           <Button handleRoute={this.openFeaturesPage}>
@@ -138,7 +124,7 @@ HomePage.propTypes = {
     React.PropTypes.array,
     React.PropTypes.bool,
   ]),
-  onSubmitForm: React.PropTypes.func,
+  refreshPosts: React.PropTypes.func,
   username: React.PropTypes.string,
   onChangeUsername: React.PropTypes.func,
 };
@@ -147,11 +133,12 @@ function mapDispatchToProps(dispatch) {
   return {
     onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
     changeRoute: (url) => dispatch(push(url)),
-    onSubmitForm: (evt) => {
+    refreshPosts: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
     },
 
+    loadRepos,
     dispatch,
   };
 }

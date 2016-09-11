@@ -11,8 +11,8 @@
   },
   {
     "id": "boilerplate.components.Footer.author.message",
-    "defaultMessage": "Made with love by {author}.",
-    "message": "Made with love by {author}."
+    "defaultMessage": "Made with ♥ by {author}.",
+    "message": "Made with ♥ by {author}."
   },
   {
     "id": "boilerplate.components.Footer.license.message",
@@ -125,19 +125,9 @@
     "message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices"
   },
   {
-    "id": "boilerplate.containers.HomePage.tryme.atPrefix",
-    "defaultMessage": "@",
-    "message": "@"
-  },
-  {
-    "id": "boilerplate.containers.HomePage.tryme.header",
-    "defaultMessage": "Try me!",
-    "message": "Try me!"
-  },
-  {
-    "id": "boilerplate.containers.HomePage.tryme.message",
-    "defaultMessage": "Show Github repositories by",
-    "message": "Show Github repositories by"
+    "id": "boilerplate.containers.HomePage.upcoming.header",
+    "defaultMessage": "Upcoming events",
+    "message": "Upcoming events"
   },
   {
     "id": "boilerplate.containers.NotFoundPage.header",
