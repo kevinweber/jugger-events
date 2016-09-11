@@ -126,8 +126,8 @@
   },
   {
     "id": "boilerplate.containers.HomePage.upcoming.header",
-    "defaultMessage": "Upcoming events",
-    "message": "Nächste events"
+    "defaultMessage": "Upcoming",
+    "message": "Demnächst"
   },
   {
     "id": "boilerplate.containers.NotFoundPage.header",

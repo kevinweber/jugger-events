@@ -1,3 +1,8 @@
+.headingWithIcon {
+  display: flex;
+  justify-content: space-between;
+}
+
 .textSection {
   margin: 3em auto;
 }

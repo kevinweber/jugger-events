@@ -4,7 +4,7 @@
 }
 
 .autorenew:hover svg {
-  transform: scale(1.1) rotate(22.5deg);
+  transform: scale(1.1) rotate(15deg);
 }
 
 .addCircleOutline svg {

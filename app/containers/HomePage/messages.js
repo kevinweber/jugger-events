@@ -16,7 +16,7 @@ export default defineMessages({
   },
   upcomingHeader: {
     id: 'boilerplate.containers.HomePage.upcoming.header',
-    defaultMessage: 'Upcoming events',
+    defaultMessage: 'Upcoming',
   },
   featuresButton: {
     id: 'boilerplate.containers.HomePage.features.Button',
