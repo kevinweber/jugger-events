@@ -14,6 +14,7 @@ import { FormattedDate } from 'react-intl';
 import { selectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
 import A from 'components/A';
+import Surtitle from 'components/Surtitle';
 
 import styles from './styles.css';
 
@@ -21,18 +22,22 @@ export class PostListItem extends React.Component { // eslint-disable-line react
   render() {
     const item = this.props.item;
 
-    // Put together the content of the repository
     const content = (
-      <div className={styles.linkWrapper}>
-        <A
-          className={styles.linkPost}
-          href={item.link}
-          target="_blank"
-        >
-          {item.title.rendered}
-        </A>
-        <div className={styles.dateWrapper}>
-          <FormattedDate className={styles.date} value={item.date_gmt} />
+      <div className={styles.postWrapper}>
+        <Surtitle text={item.type} />
+        <div className={styles.titleWrapper}>
+          <A
+            className={styles.titleLink}
+            href={item.link}
+            target="_blank"
+          >
+            {item.title.rendered}
+          </A>
+        </div>
+        <div className={styles.subtitleWrapper}>
+          <div className={styles.dateWrapper}>
+            <FormattedDate className={styles.date} value={item.date_gmt} />
+          </div>
         </div>
       </div>
     );

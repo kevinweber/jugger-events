@@ -1,0 +1,5 @@
+.component {
+  color: var(--orange);
+  font-size: 0.75em;
+  text-transform: capitalize;
+}

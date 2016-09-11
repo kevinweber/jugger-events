@@ -9,6 +9,7 @@ const OfflinePlugin = require('offline-plugin');
 const cssnext = require('postcss-cssnext');
 const postcssFocus = require('postcss-focus');
 const postcssReporter = require('postcss-reporter');
+const styles = require('../../app/global.styles.js');
 
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
@@ -34,6 +35,7 @@ module.exports = require('./webpack.base.babel')({
     postcssFocus(),
     cssnext({
       browsers: ['last 2 versions', 'IE > 10'],
+      features: styles
     }),
     postcssReporter({
       clearMessages: true,
