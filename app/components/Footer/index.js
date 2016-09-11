@@ -11,21 +11,16 @@ function Footer() {
     <footer className={styles.footer}>
       <section>
         <p>
-          <FormattedMessage {...messages.licenseMessage} />
+          <FormattedMessage
+            {...messages.authorMessage}
+            values={{
+              author: <A href="//twitter.com/kevinweber">Kevin Weber</A>,
+            }}
+          />
         </p>
       </section>
       <section>
         <LocaleToggle />
-      </section>
-      <section>
-        <p>
-          <FormattedMessage
-            {...messages.authorMessage}
-            values={{
-              author: <A href="https://twitter.com/mxstbr">Max Stoiber</A>,
-            }}
-          />
-        </p>
       </section>
     </footer>
   );
