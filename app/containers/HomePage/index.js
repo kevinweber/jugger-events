@@ -90,9 +90,9 @@ export class HomePage extends React.Component {
           <section className={styles.textSection}>
             <H2 className={styles.headingWithIcon}>
               <FormattedMessage {...messages.upcomingHeader} />
-              <span className={styles.refresh}>
+              <Button className={styles.refresh}>
                 <Autorenew onClick={this.props.refreshPosts} />
-              </span>
+              </Button>
             </H2>
             {mainContent}
           </section>

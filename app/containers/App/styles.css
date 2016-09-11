@@ -7,6 +7,7 @@ body {
 }
 
 body {
+  border-top: 9px solid var(--orange);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -15,7 +16,7 @@ body.fontLoaded {
 }
 
 :global(#app) {
-  background-color: #FAFAFA;
+  background-color: var(--white);
   min-height: 100%;
   min-width: 100%;
 }

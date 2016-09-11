@@ -29,11 +29,7 @@ function Button(props) {
     );
   }
 
-  return (
-    <div className={styles.buttonWrapper}>
-      {button}
-    </div>
-  );
+  return button;
 }
 
 Button.propTypes = {

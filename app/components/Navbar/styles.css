@@ -6,10 +6,15 @@
 
 .wordmark {
   color: var(--black);
+  cursor: pointer;
   font-weight: bold;
   text-decoration: none;
 }
 
 .wordmark:hover {
   text-decoration: underline;
+}
+
+.add {
+  cursor: pointer;
 }

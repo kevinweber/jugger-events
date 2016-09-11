@@ -1,11 +1,12 @@
 module.exports = {
   customProperties: {
     variables: {
-      black: "#111",
-      green: "#25b88d",
-      orange: "#dc661d",
+      black: "#2c2c29",
+      blue: "#4e97cc",
+      orange: "#ff6600",
+      white: "#ffffff",
       text_color: "var(--black)",
-      link_color: "var(--green)",
+      link_color: "var(--orange)",
       link_hover: "var(--orange)",
     },
   },
