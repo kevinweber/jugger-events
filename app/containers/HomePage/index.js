@@ -32,7 +32,7 @@ import H2 from 'components/H2';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-import Autorenew from 'components/Icons';
+import { Autorenew } from 'components/Icons';
 
 import styles from './styles.css';
 
@@ -87,14 +87,6 @@ export class HomePage extends React.Component {
           ]}
         />
         <div>
-          <section className={`${styles.textSection} ${styles.centered}`}>
-            <H2>
-              <FormattedMessage {...messages.startProjectHeader} />
-            </H2>
-            <p>
-              <FormattedMessage {...messages.startProjectMessage} />
-            </p>
-          </section>
           <section className={styles.textSection}>
             <H2>
               <FormattedMessage {...messages.upcomingHeader} />

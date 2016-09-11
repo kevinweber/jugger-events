@@ -1,0 +1,17 @@
+.autorenew svg {
+  color: var(--black);
+  transition: transform .3s ease-out;
+}
+
+.autorenew:hover svg {
+  transform: scale(1.1) rotate(22.5deg);
+}
+
+.addCircleOutline svg {
+  color: var(--black);
+  transition: transform .3s ease-out;
+}
+
+.addCircleOutline:hover svg {
+  transform: scale(1.1);
+}

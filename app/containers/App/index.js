@@ -14,8 +14,8 @@ import 'sanitize.css/sanitize.css';
 
 import Img from 'components/Img';
 import Footer from 'components/Footer';
-import Banner from './banner-metal.jpg';
-import A from 'components/A';
+import Logo from './logo.png';
+import Navbar from 'components/Navbar';
 
 import styles from './styles.css';
 
@@ -29,9 +29,10 @@ function App(props) {
           { name: 'description', content: 'A React.js Boilerplate application' },
         ]}
       />
-      <A className={styles.logoWrapper} href="https://twitter.com/mxstbr">
-        <Img className={styles.logo} src={Banner} alt="react-boilerplate - Logo" />
-      </A>
+      <Navbar />
+      <div className={styles.logoWrapper} href="/">
+        <Img className={styles.logo} src={Logo} alt="Jugger Events - Logo" />
+      </div>
       {React.Children.toArray(props.children)}
       <Footer />
     </div>
