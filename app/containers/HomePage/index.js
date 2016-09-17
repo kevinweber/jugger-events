@@ -18,11 +18,6 @@ import {
   selectError,
 } from 'containers/App/selectors';
 
-import {
-  selectUsername,
-} from './selectors';
-
-import { changeUsername } from './actions';
 import { loadRepos } from '../App/actions';
 
 import { FormattedMessage } from 'react-intl';
@@ -62,21 +57,6 @@ export class HomePage extends React.Component {
   componentDidMount() {
     this.props.dispatch(this.props.loadRepos());
   }
-  /**
-   * Changes the route
-   *
-   * @param  {string} route The route we want to go to
-   */
-  openRoute = (route) => {
-    this.props.changeRoute(route);
-  };
-
-  /**
-   * Changed route to '/features'
-   */
-  openFeaturesPage = () => {
-    this.openRoute('/features');
-  };
 
   render() {
     let mainContent = null;
@@ -117,9 +97,6 @@ export class HomePage extends React.Component {
             </H2>
             {mainContent}
           </section>
-          <Button handleRoute={this.openFeaturesPage}>
-            <FormattedMessage {...messages.featuresButton} />
-          </Button>
         </div>
       </article>
     );
@@ -127,7 +104,6 @@ export class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  changeRoute: React.PropTypes.func,
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
@@ -137,15 +113,11 @@ HomePage.propTypes = {
     React.PropTypes.array,
     React.PropTypes.bool,
   ]),
-  refreshPosts: React.PropTypes.func,
-  username: React.PropTypes.string,
-  onChangeUsername: React.PropTypes.func,
+  refreshPosts: React.PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
-    changeRoute: (url) => dispatch(push(url)),
     refreshPosts: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
@@ -158,7 +130,6 @@ function mapDispatchToProps(dispatch) {
 
 const mapStateToProps = createStructuredSelector({
   repos: selectRepos(),
-  username: selectUsername(),
   loading: selectLoading(),
   error: selectError(),
 });

@@ -21,19 +21,29 @@ import styles from './styles.css';
 export class PostListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
     const item = this.props.item;
+    let title;
+
+    if (item.meta_box.jugger_event_event_link.length === 0) {
+      title = (
+        <span className={styles.titleLink}>{item.title.rendered}</span>
+      );
+    } else {
+      title = (
+        <A
+          className={styles.titleLink}
+          href={item.meta_box.jugger_event_event_link}
+          target="_blank"
+        >
+          {item.title.rendered}
+        </A>
+      );
+    }
+
 
     const content = (
       <div className={styles.postWrapper}>
         <Surtitle text={item.meta_box.jugger_event_type} />
-        <div className={styles.titleWrapper}>
-          <A
-            className={styles.titleLink}
-            href={item.meta_box.jugger_event_event_link}
-            target="_blank"
-          >
-            {item.title.rendered}
-          </A>
-        </div>
+        <div className={styles.titleWrapper}>{title}</div>
         <div className={styles.subtitleWrapper}>
           <div className={styles.dateWrapper}>
             <FormattedDate className={styles.date} value={item.meta_box.jugger_event_datetime_start} />

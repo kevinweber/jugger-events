@@ -26,6 +26,10 @@ function Navbar(props) {
     openRoute('/');
   };
 
+  let openAddEventPage = () => {
+    openRoute('/add-event');
+  };
+
   return (
     <div className={styles.component}>
       <section>
@@ -36,7 +40,7 @@ function Navbar(props) {
         </Button>
       </section>
       <section>
-        <Button className={styles.add} handleRoute={openHomePage}>
+        <Button className={styles.add} handleRoute={openAddEventPage}>
           <AddCircleOutline />
         </Button>
       </section>

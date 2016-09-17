@@ -4,13 +4,13 @@ import React from 'react';
 
 import { IntlProvider, FormattedMessage } from 'react-intl';
 import messages from '../messages';
-import { FeaturePage } from '../index';
+import { AddEventPage } from '../index';
 import H1 from 'components/H1';
 
-describe('<FeaturePage />', () => {
+describe('<AddEventPage />', () => {
   it('should render its heading', () => {
     const renderedComponent = shallow(
-      <FeaturePage />
+      <AddEventPage />
     );
     expect(renderedComponent.contains(
       <H1>
@@ -22,7 +22,7 @@ describe('<FeaturePage />', () => {
   it('should link to "/"', () => {
     const openRouteSpy = expect.createSpy();
 
-    // Spy on the openRoute method of the FeaturePage
+    // Spy on the openRoute method of the AddEventPage
     const openRoute = (dest) => {
       if (dest === '/') {
         openRouteSpy();
@@ -31,7 +31,7 @@ describe('<FeaturePage />', () => {
 
     const renderedComponent = mount(
       <IntlProvider locale="en">
-        <FeaturePage changeRoute={openRoute} />
+        <AddEventPage changeRoute={openRoute} />
       </IntlProvider>
     );
     const button = renderedComponent.find('button');

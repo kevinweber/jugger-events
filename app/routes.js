@@ -39,10 +39,10 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
-      path: '/features',
-      name: 'features',
+      path: '/add-event',
+      name: 'add-event',
       getComponent(nextState, cb) {
-        System.import('containers/FeaturePage')
+        System.import('containers/AddEventPage')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
