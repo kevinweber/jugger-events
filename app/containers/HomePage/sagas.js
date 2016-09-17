@@ -16,7 +16,7 @@ import { selectUsername } from 'containers/HomePage/selectors';
 export function* getRepos() {
   // Select username from store
   const username = yield select(selectUsername());
-  const requestURL = 'http://kevinw.de/jugger/wp-json/wp/v2/posts';
+  const requestURL = 'http://localhost/wordpress/jugger-events/wp-json/wp/v2/jugger-event';
 
   // Call our request helper (see 'utils/request')
   const repos = yield call(request, requestURL);

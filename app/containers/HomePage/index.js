@@ -36,6 +36,25 @@ import { Autorenew } from 'components/Icons';
 
 import styles from './styles.css';
 
+function sortByDate(data, direction) {
+  return data.sort(function(a, b){
+    if (direction === 'desc') {
+      return new Date(b.meta_box.jugger_event_datetime_start) - new Date(a.meta_box.jugger_event_datetime_start);
+    } else {
+      return new Date(a.meta_box.jugger_event_datetime_start) - new Date(b.meta_box.jugger_event_datetime_start);
+    }
+    
+  });
+}
+
+function sortByDateAsc(data) {
+  return sortByDate(data, 'asc');
+}
+
+function sortByDateDesc(data) {
+  return sortByDate(data, 'desc');
+}
+
 export class HomePage extends React.Component {
   /**
    * when initial state username is not null, submit the form to load repos
@@ -75,7 +94,9 @@ export class HomePage extends React.Component {
 
     // If we're not loading, don't have an error and there are repos, show the repos
     } else if (this.props.repos !== false) {
-      mainContent = (<List items={this.props.repos} component={PostListItem} />);
+      let sortedData = sortByDateAsc(this.props.repos);
+      
+      mainContent = (<List items={sortedData} component={PostListItem} />);
     }
 
     return (

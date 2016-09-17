@@ -8,6 +8,7 @@ body {
 
 body {
   border-top: 9px solid var(--orange);
+  color: var(--black);
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -38,4 +39,9 @@ body.fontLoaded {
 .logo {
   max-width: 100%;
   width: 150px;
+}
+
+p {
+  margin-bottom: 0;
+  margin-top: 0;
 }

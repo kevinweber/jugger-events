@@ -4,6 +4,7 @@ module.exports = {
       black: "#2c2c29",
       blue: "#4e97cc",
       orange: "#ff6600",
+      orangeLight: "#ff8533",
       white: "#ffffff",
       text_color: "var(--black)",
       link_color: "var(--orange)",

@@ -24,11 +24,11 @@ export class PostListItem extends React.Component { // eslint-disable-line react
 
     const content = (
       <div className={styles.postWrapper}>
-        <Surtitle text={item.type} />
+        <Surtitle text={item.meta_box.jugger_event_type} />
         <div className={styles.titleWrapper}>
           <A
             className={styles.titleLink}
-            href={item.link}
+            href={item.meta_box.jugger_event_event_link}
             target="_blank"
           >
             {item.title.rendered}
@@ -36,7 +36,7 @@ export class PostListItem extends React.Component { // eslint-disable-line react
         </div>
         <div className={styles.subtitleWrapper}>
           <div className={styles.dateWrapper}>
-            <FormattedDate className={styles.date} value={item.date_gmt} />
+            <FormattedDate className={styles.date} value={item.meta_box.jugger_event_datetime_start} />
           </div>
         </div>
       </div>
