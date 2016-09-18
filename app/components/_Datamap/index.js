@@ -4,6 +4,7 @@
 
 import React from 'react';
 import Datamaps from 'datamaps';
+import styles from './styles.css';
 
 const MAP_CLEARING_PROPS = [
 	'height', 'scope', 'setProjection', 'width'
@@ -16,7 +17,12 @@ const propChangeRequiresMapClear = (oldProps, newProps) => {
 };
 
 export default class _Datamap extends React.Component {
-
+  
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  
   static propTypes = {
     arc: React.PropTypes.array,
     arcOptions: React.PropTypes.object,
@@ -35,7 +41,7 @@ export default class _Datamap extends React.Component {
     aspectRatio: 0.45,
     responsive: true
   };
-
+  
   componentDidMount() {
     this.drawMap();
   }
@@ -75,6 +81,7 @@ export default class _Datamap extends React.Component {
       data,
       graticule,
       labels,
+      legend,
       updateChoroplethOptions,
       ...props
     } = this.props;
@@ -85,7 +92,7 @@ export default class _Datamap extends React.Component {
       map = this.map = new Datamaps({
         ...props,
         data,
-        element: this.refs.container
+        element: this.refs.mapElement
       });
     } else {
       map.updateChoropleth(data, updateChoroplethOptions);
@@ -112,21 +119,39 @@ export default class _Datamap extends React.Component {
     if (labels) {
       map.labels();
     }
+    
+    if (legend.display && !this.state.isLegendVisible) {    
+      this.setState({
+        isLegendVisible: true
+      });
+    }
   }
 
   render() {
     const style = {
-      height: '100%',
-      position: 'relative',
-      width: '100%',
       ...this.props.style
     };
+    
+    let legend = null;
+    
+    if (this.state.isLegendVisible) {
+      if (this.props.legend.labels) {
+        legend = this.props.legend.labels.map((item, index) => (
+          <li className={styles.legendItem} key={`item-${index}`}>
+            <span className={styles.legendColor} style={{backgroundColor:item.color}}></span>
+            <span className={styles.legendText}>{item.text}</span>
+          </li>
+        ));
 
-    return <div ref = "container"
-    style = {
-      style
+        legend = (<ul className={styles.legend}>{legend}</ul>);
+      }
     }
-    />;
-  }
 
+    return (
+      <div className={styles.container}>
+        <div ref='mapElement' className={styles.map} />
+        {legend}
+      </div>
+    )
+  }
 }

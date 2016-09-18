@@ -6,67 +6,82 @@
 // TODO: Lighten/darken country's color based on amount of jugger events, example: https://github.com/markmarkoh/datamaps/blob/master/README.md#choropleth-with-auto-calculated-color
 // More map examples: https://github.com/btmills/react-datamaps/tree/master/examples
 // List with default options: https://github.com/markmarkoh/datamaps/blob/master/README.md#default-options
+// formatDate API: https://github.com/yahoo/react-intl/wiki/API#formatdate
 
 import React from 'react';
-
 import Datamap from 'components/_Datamap';
+import styles from './styles.css';
 
-export default class Map extends React.Component {
+import { injectIntl } from 'react-intl';
+
+class Map extends React.Component {
+    static fills = {
+      defaultFill: '#4e97cc',
+      tournament: '#ff6600',
+      practice: '#2c2c29',
+      other: '#54544e'
+    }
+  
+    renderData(data) {
+      return Object.values(data).map(function (currentEvent) {
+        return {
+          date: currentEvent.meta_box.jugger_event_datetime_start,
+          fillColor: Map.fills[currentEvent.meta_box.jugger_event_type] || Map.fills.defaultFill, // Used when hovering event's bubble
+          fillKey: currentEvent.meta_box.jugger_event_type,
+          fillOpacity: 0.5,
+          latitude: currentEvent.meta_box.map.latitude,
+          longitude: currentEvent.meta_box.map.longitude,
+          name: currentEvent.title.rendered
+        };
+      });
+    }
+
 	render() {
+        let data = this.renderData(this.props.data);
+
 		return (
             <Datamap
                 geographyConfig={{
                     popupOnHover: false,
                     highlightOnHover: false,
-                    borderWidth: 0.2,
+                    borderWidth: 0.5,
                     borderColor: '#c5ddee'
                 }}
+
+                fills = {Map.fills}
+                bubbles = {data}
           
-                fills = {{
-                    defaultFill: '#4e97cc',
-                    tournament: '#ff6600',
-                    practice: '#2c2c29',
-                    other: '#54544e'
+                legend = {{
+                  display: true,
+                  labels: [{
+                    text: "Tournament",
+                    color: Map.fills.tournament
+                  }, {
+                    text: "Practice",
+                    color: Map.fills.practice
+                  }, {
+                    text: "Other",
+                    color: Map.fills.other
+                  }]
                 }}
           
-                bubbles={[
-                    {
-                        name: 'Castle Bravo',
-                        radius: 5,
-                        yeild: 100,
-                        country: 'USA',
-                        significance: 'First dry fusion fuel "staged" thermonuclear weapon; a serious nuclear fallout accident occurred',
-                        fillKey: 'tournament',
-                        borderWidth: 0,
-//                        borderColor: '',
-//                        borderOpacity: 1,
-                        fillOpacity: 0.8,
-                        date: '1954-03-01',
-                        latitude: 39.8117865,
-                        longitude: -105.1554504
-                    }, {
-                        name: 'Tsar Bomba',
-                        radius: 10,
-                        yeild: 300,
-                        country: 'USSR',
-                        fillKey: 'practice',
-                        borderWidth: 0,
-//                        borderColor: '',
-//                        borderOpacity: 1,
-                        fillOpacity: 0.8,
-                        significance: 'Largest thermonuclear weapon ever tested-scaled down from its initial 100Mt design by 50%',
-                        date: '1961-10-31',
-                        latitude: 37.8715926,
-                        longitude: -122.27274699999998
-                    }
-                ]}
-          
                 bubbleOptions={{
+                    borderWidth: 0,
+                    highlightFillColor: function (eventData) {
+                      return eventData.fillColor;
+                    },
+                    highlightBorderWidth: 0,
+                    highlightFillOpacity: 0.95,
                     popupTemplate: (geo, data) =>
-                        `<div class="hoverinfo">Yield: ${data.yeild}\nExploded on ${data.date} by the ${data.country}`
+                        `<div class=${styles.info}>
+                            <span class=${styles.infoTitle}>${data.name}</span>
+                            <span class=${styles.infoDate}>on ${this.props.intl.formatDate(data.date)}</span>
+                         </div>`,
+                    radius: 5
                 }}
             />
 		);
 	}
-
 }
+
+export default injectIntl(Map)

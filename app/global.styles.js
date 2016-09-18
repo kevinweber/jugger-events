@@ -3,6 +3,7 @@ module.exports = {
     variables: {
       black: "#2c2c29",
       blue: "#4e97cc",
+      lightGrey: "#cccccc",
       orange: "#ff6600",
       orangeLight: "#ff8533",
       white: "#ffffff",

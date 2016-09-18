@@ -90,7 +90,7 @@ export class HomePage extends React.Component {
         />
         <div>
           <section>
-            <Map />
+            <Map data={this.props.repos} />
           </section>
           <section className={styles.textSection}>
             <H2 className={styles.headingWithIcon}>
