@@ -27,7 +27,9 @@ function App(props) {
         ]}
       />
       <Navbar />
-      {React.Children.toArray(props.children)}
+      <div className={styles.holyGrailBody}>
+        {React.Children.toArray(props.children)}
+      </div>
       <Footer />
     </div>
   );
