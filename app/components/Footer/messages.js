@@ -9,7 +9,7 @@ export default defineMessages({
   authorMessage: {
     id: 'boilerplate.components.Footer.author.message',
     defaultMessage: `
-      Made with ♥ by {author}.
+      A ♥ for the jugger community. By {author}.
     `,
   },
 });

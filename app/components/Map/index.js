@@ -25,13 +25,13 @@ class Map extends React.Component {
     renderData(data) {
       return Object.values(data).map(function (currentEvent) {
         return {
-          date: currentEvent.meta_box.jugger_event_datetime_start,
-          fillColor: Map.fills[currentEvent.meta_box.jugger_event_type] || Map.fills.defaultFill, // Used when hovering event's bubble
-          fillKey: currentEvent.meta_box.jugger_event_type,
+          date: currentEvent.dateTimeStart,
+          fillColor: Map.fills[currentEvent.type] || Map.fills.defaultFill, // Used when hovering event's bubble
+          fillKey: currentEvent.type,
           fillOpacity: 0.5,
-          latitude: currentEvent.meta_box.map.latitude,
-          longitude: currentEvent.meta_box.map.longitude,
-          name: currentEvent.title.rendered
+          latitude: currentEvent.location.latitude,
+          longitude: currentEvent.location.longitude,
+          name: currentEvent.title
         };
       });
     }

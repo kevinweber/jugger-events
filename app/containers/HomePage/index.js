@@ -35,9 +35,9 @@ import styles from './styles.css';
 function sortByDate(data, direction) {
   return data.sort(function(a, b){
     if (direction === 'desc') {
-      return new Date(b.meta_box.jugger_event_datetime_start) - new Date(a.meta_box.jugger_event_datetime_start);
+      return new Date(b.dateTimeStart) - new Date(a.dateTimeStart);
     } else {
-      return new Date(a.meta_box.jugger_event_datetime_start) - new Date(b.meta_box.jugger_event_datetime_start);
+      return new Date(a.dateTimeStart) - new Date(b.dateTimeStart);
     }
     
   });

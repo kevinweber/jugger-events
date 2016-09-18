@@ -11,8 +11,8 @@
   },
   {
     "id": "boilerplate.components.Footer.author.message",
-    "defaultMessage": "Made with ♥ by {author}.",
-    "message": "Made with ♥ by {author}."
+    "defaultMessage": "A ♥ for the jugger community. By {author}.",
+    "message": "A ♥ for the jugger community. By {author}."
   },
   {
     "id": "boilerplate.components.Footer.license.message",

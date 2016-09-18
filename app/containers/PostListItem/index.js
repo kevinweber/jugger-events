@@ -23,18 +23,18 @@ export class PostListItem extends React.Component { // eslint-disable-line react
     const item = this.props.item;
     let title;
 
-    if (item.meta_box.jugger_event_event_link.length === 0) {
+    if (item.link.length === 0) {
       title = (
-        <span className={styles.titleLink}>{item.title.rendered}</span>
+        <span className={styles.titleLink}>{item.title}</span>
       );
     } else {
       title = (
         <A
           className={styles.titleLink}
-          href={item.meta_box.jugger_event_event_link}
+          href={item.link}
           target="_blank"
         >
-          {item.title.rendered}
+          {item.title}
         </A>
       );
     }
@@ -42,11 +42,11 @@ export class PostListItem extends React.Component { // eslint-disable-line react
 
     const content = (
       <div className={styles.postWrapper}>
-        <Surtitle text={item.meta_box.jugger_event_type} />
+        <Surtitle text={item.type} />
         <div className={styles.titleWrapper}>{title}</div>
         <div className={styles.subtitleWrapper}>
           <div className={styles.dateWrapper}>
-            <FormattedDate className={styles.date} value={item.meta_box.jugger_event_datetime_start} />
+            <FormattedDate className={styles.date} value={item.dateTimeStart} />
           </div>
         </div>
       </div>
@@ -54,7 +54,7 @@ export class PostListItem extends React.Component { // eslint-disable-line react
 
     // Render the content into a list item
     return (
-      <ListItem key={`repo-list-item-${item.slug}`} item={content} />
+      <ListItem key={`repo-list-item-${item.id}`} item={content} />
     );
   }
 }
