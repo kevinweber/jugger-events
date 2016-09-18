@@ -21,7 +21,7 @@ class Map extends React.Component {
       practice: '#2c2c29',
       other: '#54544e'
     }
-  
+
     renderData(data) {
       return Object.values(data).map(function (currentEvent) {
         return {
@@ -50,7 +50,7 @@ class Map extends React.Component {
 
                 fills = {Map.fills}
                 bubbles = {data}
-          
+
                 legend = {{
                   display: true,
                   labels: [{
@@ -64,7 +64,7 @@ class Map extends React.Component {
                     color: Map.fills.other
                   }]
                 }}
-          
+
                 bubbleOptions={{
                     borderWidth: 0,
                     highlightFillColor: function (eventData) {

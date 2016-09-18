@@ -39,7 +39,7 @@ function sortByDate(data, direction) {
     } else {
       return new Date(a.dateTimeStart) - new Date(b.dateTimeStart);
     }
-    
+
   });
 }
 
@@ -76,7 +76,7 @@ export class HomePage extends React.Component {
     // If we're not loading, don't have an error and there are repos, show the repos
     } else if (this.props.repos !== false) {
       let sortedData = sortByDateAsc(this.props.repos);
-      
+
       mainContent = (<List items={sortedData} component={PostListItem} />);
     }
 

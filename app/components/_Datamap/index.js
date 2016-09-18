@@ -17,12 +17,12 @@ const propChangeRequiresMapClear = (oldProps, newProps) => {
 };
 
 export default class _Datamap extends React.Component {
-  
+
   constructor(props) {
     super(props);
     this.state = {};
   }
-  
+
   static propTypes = {
     arc: React.PropTypes.array,
     arcOptions: React.PropTypes.object,
@@ -41,7 +41,7 @@ export default class _Datamap extends React.Component {
     aspectRatio: 0.45,
     responsive: true
   };
-  
+
   componentDidMount() {
     this.drawMap();
   }
@@ -65,9 +65,11 @@ export default class _Datamap extends React.Component {
       container
     } = this.refs;
 
-    for (const child of Array.from(container.childNodes)) {
-      container.removeChild(child);
-    }
+		// NOTE: This part is REMOVED because this breaks the router and throws an error
+		// Maybe we have to compensate this removed part later
+    // for (const child of Array.from(container.childNodes)) {
+    //   container.removeChild(child);
+    // }
 
     delete this.map;
   }
@@ -119,8 +121,8 @@ export default class _Datamap extends React.Component {
     if (labels) {
       map.labels();
     }
-    
-    if (legend.display && !this.state.isLegendVisible) {    
+
+    if (legend.display && !this.state.isLegendVisible) {
       this.setState({
         isLegendVisible: true
       });
@@ -131,14 +133,14 @@ export default class _Datamap extends React.Component {
     const style = {
       ...this.props.style
     };
-    
+
     let legend = null;
-    
+
     if (this.state.isLegendVisible) {
       if (this.props.legend.labels) {
         legend = this.props.legend.labels.map((item, index) => (
           <li className={styles.legendItem} key={`item-${index}`}>
-            <span className={styles.legendColor} style={{backgroundColor:item.color}}></span>
+            <span style={{backgroundColor:item.color}}></span>
             <span className={styles.legendText}>{item.text}</span>
           </li>
         ));
