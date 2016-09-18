@@ -31,16 +31,6 @@ body.fontLoaded {
   flex-direction: column;
 }
 
-.logoWrapper {
-  padding: 2em 0;
-  text-align: center;
-}
-
-.logo {
-  max-width: 100%;
-  width: 150px;
-}
-
 p {
   margin-bottom: 0;
   margin-top: 0;

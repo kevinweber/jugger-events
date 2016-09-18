@@ -27,6 +27,7 @@ import H2 from 'components/H2';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
+import Map from 'components/Map';
 import { Autorenew } from 'components/Icons';
 
 import styles from './styles.css';
@@ -82,12 +83,15 @@ export class HomePage extends React.Component {
     return (
       <article>
         <Helmet
-          title="Home Page"
+          title="Jugger Events"
           meta={[
-            { name: 'description', content: 'A React.js Boilerplate application homepage' },
+            { name: 'description', content: '' },
           ]}
         />
         <div>
+          <section>
+            <Map />
+          </section>
           <section className={styles.textSection}>
             <H2 className={styles.headingWithIcon}>
               <FormattedMessage {...messages.upcomingHeader} />

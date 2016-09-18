@@ -9,23 +9,24 @@ import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 
 import messages from './messages';
+import styles from './styles.css';
+
 import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button';
 import H1 from 'components/H1';
+import Img from 'components/Img';
+
+import Logo from './media/logo.png';
 
 export function NotFound(props) {
   return (
     <article>
-      <H1>
+      <div className={styles.logoWrapper} href="/">
+        <Img className={styles.logo} src={Logo} alt="Jugger Events Logo" />
+      </div>
+      <H1 className={styles.heading}>
         <FormattedMessage {...messages.header} />
       </H1>
-      <Button
-        handleRoute={function redirect() {
-          props.changeRoute('/');
-        }}
-      >
-        <FormattedMessage {...messages.homeButton} />
-      </Button>
     </article>
   );
 }
