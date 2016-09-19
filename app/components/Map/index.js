@@ -12,9 +12,7 @@ import React from 'react';
 import Datamap from 'components/_Datamap';
 import styles from './styles.css';
 
-import { injectIntl } from 'react-intl';
-
-class Map extends React.Component {
+export default class Map extends React.Component {
     static fills = {
       defaultFill: '#4e97cc',
       tournament: '#ff6600',
@@ -30,6 +28,7 @@ class Map extends React.Component {
           fillKey: currentEvent.type,
           fillOpacity: 0.5,
           latitude: currentEvent.location.latitude,
+          link: currentEvent.link,
           longitude: currentEvent.location.longitude,
           name: currentEvent.title
         };
@@ -37,51 +36,46 @@ class Map extends React.Component {
     }
 
 	render() {
-        let data = this.renderData(this.props.data);
+    let data = this.renderData(this.props.data);
 
 		return (
-            <Datamap
-                geographyConfig={{
-                    popupOnHover: false,
-                    highlightOnHover: false,
-                    borderWidth: 0.5,
-                    borderColor: '#c5ddee'
-                }}
+      <Datamap
+          geographyConfig={{
+              popupOnHover: false,
+              highlightOnHover: false,
+              borderWidth: 0.5,
+              borderColor: '#c5ddee'
+          }}
 
-                fills = {Map.fills}
-                bubbles = {data}
+          fills = {Map.fills}
+          bubbles = {data}
 
-                legend = {{
-                  display: true,
-                  labels: [{
-                    text: "Tournament",
-                    color: Map.fills.tournament
-                  }, {
-                    text: "Practice",
-                    color: Map.fills.practice
-                  }, {
-                    text: "Other",
-                    color: Map.fills.other
-                  }]
-                }}
+          legend = {{
+            display: true,
+            labels: [{
+              text: "Tournament",
+              color: Map.fills.tournament
+            }, {
+              text: "Practice",
+              color: Map.fills.practice
+            }, {
+              text: "Other",
+              color: Map.fills.other
+            }]
+          }}
 
-                bubbleOptions={{
-                    borderWidth: 0,
-                    highlightFillColor: function (eventData) {
-                      return eventData.fillColor;
-                    },
-                    highlightBorderWidth: 0,
-                    highlightFillOpacity: 0.95,
-                    popupTemplate: (geo, data) =>
-                        `<div class=${styles.info}>
-                            <span class=${styles.infoTitle}>${data.name}</span>
-                            <span class=${styles.infoDate}>on ${this.props.intl.formatDate(data.date)}</span>
-                         </div>`,
-                    radius: 5
-                }}
-            />
+          bubbleOptions={{
+              borderWidth: 0,
+              highlightFillColor: function (eventData) {
+                return eventData.fillColor;
+              },
+              highlightBorderWidth: 0,
+              highlightFillOpacity: 0.95,
+              // Don't use the default popup functionality because it's too inflexible
+              popupOnHover: false,
+              radius: 4
+          }}
+      />
 		);
 	}
 }
-
-export default injectIntl(Map)

@@ -6,6 +6,8 @@ import React from 'react';
 import Datamaps from 'datamaps';
 import styles from './styles.css';
 
+import Tooltip from 'components/Tooltip';
+
 const MAP_CLEARING_PROPS = [
 	'height', 'scope', 'setProjection', 'width'
 ];
@@ -21,9 +23,9 @@ export default class _Datamap extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-  }
+  };
 
-  static propTypes = {
+  static propTypes  = {
     arc: React.PropTypes.array,
     arcOptions: React.PropTypes.object,
     bubbleOptions: React.PropTypes.object,
@@ -42,7 +44,33 @@ export default class _Datamap extends React.Component {
     responsive: true
   };
 
+	onMouseOver(event) {
+		if (event.target.classList.contains('datamaps-bubble')) {
+			this.setState({
+				currentEvent: {
+					data: JSON.parse(event.target.getAttribute('data-info'))
+				}
+			});
+		}
+	}
+
+	onMouseOut(event) {
+		console.log('out', event);
+		// if (event.target.classList.contains('datamaps-bubble')) {
+		// 	function updateTooltip() {
+		// 		console.log('UPDATE');
+		// 		let tooltip = document.querySelector('.datamaps-hoverover');
+		// 		console.log(tooltip);
+		// 		tooltip.style.left = '0px';
+		// 	}
+		//
+		// 	updateTooltip();
+		// }
+	}
+
   componentDidMount() {
+		this.refs.mapElement.addEventListener('mouseover', this.onMouseOver.bind(this));
+		this.refs.mapElement.addEventListener('mouseout', this.onMouseOver.bind(this));
     this.drawMap();
   }
 
@@ -74,7 +102,7 @@ export default class _Datamap extends React.Component {
     delete this.map;
   }
 
-  drawMap() {
+	drawMap() {
     const {
       arc,
       arcOptions,
@@ -88,13 +116,21 @@ export default class _Datamap extends React.Component {
       ...props
     } = this.props;
 
+		function done(datamap) {
+			// datamap.svg.on('mousemove', function(datum, index) {
+			// 	console.log(d3.select('.datamaps-hoverover'));
+			// 	console.log(datum, index);//, this.querySelectorAll('.datamaps-hoverover'));
+			// });
+		}
+
     let map = this.map;
 
     if (!map) {
       map = this.map = new Datamaps({
         ...props,
         data,
-        element: this.refs.mapElement
+        element: this.refs.mapElement,
+				done
       });
     } else {
       map.updateChoropleth(data, updateChoroplethOptions);
@@ -140,7 +176,7 @@ export default class _Datamap extends React.Component {
       if (this.props.legend.labels) {
         legend = this.props.legend.labels.map((item, index) => (
           <li className={styles.legendItem} key={`item-${index}`}>
-            <span style={{backgroundColor:item.color}}></span>
+            <span className={styles.legendColor} style={{backgroundColor:item.color}}></span>
             <span className={styles.legendText}>{item.text}</span>
           </li>
         ));
@@ -152,6 +188,7 @@ export default class _Datamap extends React.Component {
     return (
       <div className={styles.container}>
         <div ref='mapElement' className={styles.map} />
+				<Tooltip data={this.state.currentEvent.data} />
         {legend}
       </div>
     )

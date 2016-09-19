@@ -1,0 +1,24 @@
+.info {
+  background-color: var(--white);
+  border-color: var(--lightGrey);
+  border-style: solid;
+  border-width: 1px;
+  bottom: 0;
+  left: 50%;
+  max-width: 100%;
+  padding: 0.4rem 0.5rem;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.infoTitle {
+  color: var(--black);
+  display: block;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.infoDate {
+  display: block;
+  font-size: 0.75rem;
+}
