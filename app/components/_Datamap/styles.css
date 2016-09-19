@@ -33,6 +33,10 @@
   width: 9px;
 }
 
+:global .datamaps-bubble:hover {
+  cursor: pointer;
+}
+
 .noLink:hover {
   cursor: default;
 }
