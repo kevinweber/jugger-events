@@ -22,7 +22,9 @@ export default class _Datamap extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+			currentEvent: {}
+		};
   };
 
   static propTypes  = {
@@ -44,33 +46,56 @@ export default class _Datamap extends React.Component {
     responsive: true
   };
 
+	onMouseOut(event) {console.log(this.state.currentEvent.stickTooltip);
+		this.setState({
+			currentEvent: {
+				data: this.state.currentEvent.data,
+				showTooltip: this.state.currentEvent.stickTooltip,
+				stickTooltip: this.state.currentEvent.stickTooltip
+			}
+		})
+	}
+
 	onMouseOver(event) {
 		if (event.target.classList.contains('datamaps-bubble')) {
 			this.setState({
 				currentEvent: {
-					data: JSON.parse(event.target.getAttribute('data-info'))
+					data: JSON.parse(event.target.getAttribute('data-info')),
+					showTooltip: true
 				}
 			});
+
+			if (!this.state.currentEvent.data.link) {
+				event.target.classList.add(styles.noLink);
+			}
+
+			event.target.addEventListener('mouseout', this.onMouseOut.bind(this));
+
+			// TODO: Position tooltip relative to bubble position
 		}
 	}
 
-	onMouseOut(event) {
-		console.log('out', event);
-		// if (event.target.classList.contains('datamaps-bubble')) {
-		// 	function updateTooltip() {
-		// 		console.log('UPDATE');
-		// 		let tooltip = document.querySelector('.datamaps-hoverover');
-		// 		console.log(tooltip);
-		// 		tooltip.style.left = '0px';
-		// 	}
-		//
-		// 	updateTooltip();
-		// }
+	onClick(event) {
+		if (event.target.classList.contains('datamaps-bubble')) {
+			this.setState({
+				currentEvent: {
+					data: this.state.currentEvent.data,
+					showTooltip: true,
+					stickTooltip: true
+				}
+			});
+
+			let link = this.state.currentEvent.data.link;
+
+			if (link) {
+				window.open(link, '_blank');
+			}
+		}
 	}
 
   componentDidMount() {
 		this.refs.mapElement.addEventListener('mouseover', this.onMouseOver.bind(this));
-		this.refs.mapElement.addEventListener('mouseout', this.onMouseOver.bind(this));
+		this.refs.mapElement.addEventListener('click', this.onClick.bind(this));
     this.drawMap();
   }
 
@@ -116,21 +141,13 @@ export default class _Datamap extends React.Component {
       ...props
     } = this.props;
 
-		function done(datamap) {
-			// datamap.svg.on('mousemove', function(datum, index) {
-			// 	console.log(d3.select('.datamaps-hoverover'));
-			// 	console.log(datum, index);//, this.querySelectorAll('.datamaps-hoverover'));
-			// });
-		}
-
     let map = this.map;
 
     if (!map) {
       map = this.map = new Datamaps({
         ...props,
         data,
-        element: this.refs.mapElement,
-				done
+        element: this.refs.mapElement
       });
     } else {
       map.updateChoropleth(data, updateChoroplethOptions);
@@ -188,7 +205,7 @@ export default class _Datamap extends React.Component {
     return (
       <div className={styles.container}>
         <div ref='mapElement' className={styles.map} />
-				<Tooltip data={this.state.currentEvent.data} />
+				<Tooltip showTooltip={this.state.currentEvent.showTooltip} data={this.state.currentEvent.data} />
         {legend}
       </div>
     )

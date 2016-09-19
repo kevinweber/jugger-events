@@ -32,3 +32,7 @@
   margin-right: 7px;
   width: 9px;
 }
+
+.noLink:hover {
+  cursor: default;
+}

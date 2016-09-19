@@ -8,7 +8,7 @@ function Tooltip(props) {
   let tooltip = null;
   let title = null;
 
-  if (props.data) {
+  if (props.data && props.showTooltip) {
     if (props.data.link.length === 0) {
       title = (
         <span className={styles.infoTitle}>{props.data.name}</span>
