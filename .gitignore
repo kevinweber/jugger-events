@@ -1,3 +1,8 @@
+# Ignore files with private information.
+# Remove "default__" from placeholder files
+# and insert missing information.
+app/global.config.js
+
 # Don't check auto-generated stuff into git
 coverage
 build
