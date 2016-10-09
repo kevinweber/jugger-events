@@ -1,3 +1,10 @@
+// !!!!!!!!! //
+// ATTENTION //
+// This component is no longer used.
+// It's been replaced by MapboxMap but the code is
+// still here in case we have to switch back, e.g.
+// to not depend on Mapbox as a third party.
+
 // NOTE: Don't include this component directly in a page.
 // It is used to create maps with a more specific purpose.
 // Based on: https://github.com/btmills/react-datamaps/blob/master/src/datamap.jsx
@@ -87,6 +94,7 @@ export default class _Datamap extends React.Component {
 
 			let link = this.state.currentEvent.data.link;
 
+			// TODO: Don't open link when user is on touch device; let him click on the opened popup instead
 			if (link) {
 				window.open(link, '_blank');
 			}
@@ -189,17 +197,15 @@ export default class _Datamap extends React.Component {
 
     let legend = null;
 
-    if (this.state.isLegendVisible) {
-      if (this.props.legend.labels) {
-        legend = this.props.legend.labels.map((item, index) => (
-          <li className={styles.legendItem} key={`item-${index}`}>
-            <span className={styles.legendColor} style={{backgroundColor:item.color}}></span>
-            <span className={styles.legendText}>{item.text}</span>
-          </li>
-        ));
+    if (this.state.isLegendVisible && this.props.legend.labels) {
+      legend = this.props.legend.labels.map((item, index) => (
+        <li className={styles.legendItem} key={`item-${index}`}>
+          <span className={styles.legendColor} style={{backgroundColor:item.color}}></span>
+          <span className={styles.legendText}>{item.text}</span>
+        </li>
+      ));
 
-        legend = (<ul className={styles.legend}>{legend}</ul>);
-      }
+      legend = (<ul className={styles.legend}>{legend}</ul>);
     }
 
     return (

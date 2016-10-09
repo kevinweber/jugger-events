@@ -9,8 +9,11 @@
 // formatDate API: https://github.com/yahoo/react-intl/wiki/API#formatdate
 
 import React from 'react';
-import Datamap from 'components/_Datamap';
+// import Datamap from 'components/_Datamap';
 import styles from './styles.css';
+
+import MapboxMap from 'components/_MapboxMap';
+import mapboxgl from 'mapbox-gl';
 
 export default class Map extends React.Component {
     static fills = {
@@ -39,43 +42,45 @@ export default class Map extends React.Component {
     let data = this.renderData(this.props.data);
 
 		return (
-      <Datamap
-          geographyConfig={{
-              popupOnHover: false,
-              highlightOnHover: false,
-              borderWidth: 0.5,
-              borderColor: '#c5ddee'
-          }}
-
-          fills = {Map.fills}
-          bubbles = {data}
-
-          legend = {{
-            display: true,
-            labels: [{
-              text: "Tournament",
-              color: Map.fills.tournament
-            }, {
-              text: "Practice",
-              color: Map.fills.practice
-            }, {
-              text: "Other",
-              color: Map.fills.other
-            }]
-          }}
-
-          bubbleOptions={{
-              borderWidth: 0,
-              highlightFillColor: function (eventData) {
-                return eventData.fillColor;
-              },
-              highlightBorderWidth: 0,
-              highlightFillOpacity: 0.95,
-              // Don't use the default popup functionality because it's too inflexible
-              popupOnHover: false,
-              radius: 4
-          }}
-      />
+      <MapboxMap />
+      
+      // <Datamap
+      //     geographyConfig={{
+      //         popupOnHover: false,
+      //         highlightOnHover: false,
+      //         borderWidth: 0.5,
+      //         borderColor: '#c5ddee'
+      //     }}
+      //
+      //     fills = {Map.fills}
+      //     bubbles = {data}
+      //
+      //     legend = {{
+      //       display: true,
+      //       labels: [{
+      //         text: "Tournament",
+      //         color: Map.fills.tournament
+      //       }, {
+      //         text: "Practice",
+      //         color: Map.fills.practice
+      //       }, {
+      //         text: "Other",
+      //         color: Map.fills.other
+      //       }]
+      //     }}
+      //
+      //     bubbleOptions={{
+      //         borderWidth: 0,
+      //         highlightFillColor: function (eventData) {
+      //           return eventData.fillColor;
+      //         },
+      //         highlightBorderWidth: 0,
+      //         highlightFillOpacity: 0.95,
+      //         // Don't use the default popup functionality because it's too inflexible
+      //         popupOnHover: false,
+      //         radius: 4
+      //     }}
+      // />
 		);
 	}
 }

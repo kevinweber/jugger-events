@@ -49,6 +49,9 @@ module.exports = (options) => ({
     }, {
       test: /\.(mp4|webm)$/,
       loader: 'url-loader?limit=10000',
+    }, {
+      test: /mapbox-gl.+\.js$/,
+      loader: 'transform/cacheable?brfs'
     }],
   },
   plugins: options.plugins.concat([
@@ -75,6 +78,10 @@ module.exports = (options) => ({
       '.jsx',
       '.react.js',
     ],
+    alias: {
+      webworkify: 'webworkify-webpack',
+      'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
+    },
     mainFields: [
       'jsnext:main',
       'main',
