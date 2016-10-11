@@ -11,8 +11,8 @@
   },
   {
     "id": "boilerplate.components.Footer.author.message",
-    "defaultMessage": "A ♥ for the jugger community. By {author}.",
-    "message": "Ein ♥ für die Jugger-Gemeinschaft. Von {author}."
+    "defaultMessage": "A 🎁 for the jugger community. By {author}.",
+    "message": "Ein 🎁 für die Jugger-Gemeinschaft. Von {author}."
   },
   {
     "id": "boilerplate.components.Footer.license.message",
