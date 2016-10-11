@@ -8,6 +8,7 @@
   color: var(--black);
   cursor: pointer;
   font-weight: bold;
+  outline: 0;
   text-decoration: none;
 }
 
@@ -17,4 +18,5 @@
 
 .add {
   cursor: pointer;
+  outline: 0;
 }

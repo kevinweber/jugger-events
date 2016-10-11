@@ -2,12 +2,6 @@
  * Map with all Jugger events
  */
 
-// TODO: Zooming: https://github.com/markmarkoh/datamaps/blob/master/README.md#zooming
-// TODO: Lighten/darken country's color based on amount of jugger events, example: https://github.com/markmarkoh/datamaps/blob/master/README.md#choropleth-with-auto-calculated-color
-// More map examples: https://github.com/btmills/react-datamaps/tree/master/examples
-// List with default options: https://github.com/markmarkoh/datamaps/blob/master/README.md#default-options
-// formatDate API: https://github.com/yahoo/react-intl/wiki/API#formatdate
-
 import React from 'react';
 // import Datamap from 'components/_Datamap';
 import styles from './styles.css';
@@ -16,34 +10,69 @@ import MapboxMap from 'components/_MapboxMap';
 import mapboxgl from 'mapbox-gl';
 
 export default class Map extends React.Component {
-    static fills = {
-      defaultFill: '#4e97cc',
-      tournament: '#ff6600',
-      practice: '#2c2c29',
-      other: '#54544e'
+  static dataTypes = {
+    defaultType: {
+      color: '#4e97cc',
+      icon: 'circle'
+    },
+    charity: {
+      color: '#ff6666',
+      icon: 'star'
+    },
+    tournament: {
+      color: '#ff6600',
+      icon: 'marker'
+    },
+    practice: {
+      color: '#2c2c29',
+      icon: 'circle'
+    },
+    info: {
+      color: '#ff6666',
+      icon: 'information'
+    },
+    other: {
+      color: '#54544e',
+      icon: 'circle'
     }
+  }
 
-    renderData(data) {
-      return Object.values(data).map(function (currentEvent) {
-        return {
-          date: currentEvent.dateTimeStart,
-          fillColor: Map.fills[currentEvent.type] || Map.fills.defaultFill, // Used when hovering event's bubble
-          fillKey: currentEvent.type,
-          fillOpacity: 0.5,
-          latitude: currentEvent.location.latitude,
-          link: currentEvent.link,
-          longitude: currentEvent.location.longitude,
-          name: currentEvent.title
-        };
-      });
-    }
+  // renderData(data) {
+  //   return Object.values(data).map(function (currentEvent) {
+  //     return {
+  //       date: currentEvent.dateTimeStart,
+  //       fillColor: Map.fills[currentEvent.type] || Map.fills.defaultFill, // Used when hovering event's bubble
+  //       fillKey: currentEvent.type,
+  //       fillOpacity: 0.5,
+  //       link: currentEvent.link
+  //     };
+  //   });
+  // }
 
-	render() {
+  renderData(data) {
+    return Object.values(data).map(function (currentEvent) {
+      return {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": [currentEvent.location.longitude, currentEvent.location.latitude]
+        },
+        "properties": {
+          "title": currentEvent.title,
+          // Icons: https://www.mapbox.com/maki-icons/
+          "icon": (Map.dataTypes[currentEvent.type] && Map.dataTypes[currentEvent.type].icon) || Map.dataTypes[currentEvent.defaultType].icon
+        }
+      };
+    });
+  }
+
+
+  render() {
     let data = this.renderData(this.props.data);
 
 		return (
-      <MapboxMap />
-      
+      <MapboxMap data={data} />
+
       // <Datamap
       //     geographyConfig={{
       //         popupOnHover: false,
@@ -81,6 +110,6 @@ export default class Map extends React.Component {
       //         radius: 4
       //     }}
       // />
-		);
-	}
+    );
+  }
 }
