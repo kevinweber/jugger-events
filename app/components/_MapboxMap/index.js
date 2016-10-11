@@ -26,6 +26,8 @@ export default class MapboxMap extends React.Component {
         style: this.props.style,
         zoom: this.props.zoom
       });
+
+      map.addControl(new mapboxgl.Navigation());
     }
 
 	render() {
