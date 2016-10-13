@@ -4,7 +4,6 @@
 
 import React from 'react';
 // import Datamap from 'components/_Datamap';
-import styles from './styles.css';
 
 import MapboxMap from 'components/_MapboxMap';
 import mapboxgl from 'mapbox-gl';

@@ -1,7 +1,6 @@
 /* Global styles */
 
-html,
-body {
+html, body {
   height: 100%;
   width: 100%;
 }
@@ -22,10 +21,12 @@ body.fontLoaded {
   min-width: 100%;
 }
 
+
+/* Subtract "9px" because otherwise the page's border-top would cause the page to be scrollable. The page's height would be "100vh + 9px" instead of just 100vh. */
+
 .holyGrail {
   display: flex;
   flex-direction: column;
-  /* Subtract "9px" because otherwise the page's border-top would cause the page to be scrollable. The page's height would be "100vh + 9px" instead of just 100vh. */
   min-height: calc(100vh - 9px);
 }
 
@@ -34,10 +35,10 @@ body.fontLoaded {
   flex: 1;
 }
 
+
 /* Make sure all children are 100% wide */
-.holyGrailBody > div,
-.holyGrailBody > article,
-.holyGrailBody > section {
+
+.holyGrailBody>div, .holyGrailBody>article, .holyGrailBody>section {
   flex: 1 100%;
 }
 

@@ -7,7 +7,7 @@
   width: 100%;
 }
 
-.item + .item {
+.item+.item {
   border-top: 1px solid #EEE;
 }
 

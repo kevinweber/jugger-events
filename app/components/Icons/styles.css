@@ -1,6 +1,6 @@
 .autorenew svg {
   color: var(--black);
-  transition: transform .3s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
 .autorenew:hover svg {
@@ -9,7 +9,7 @@
 
 .addCircleOutline svg {
   color: var(--black);
-  transition: transform .3s ease-out;
+  transition: transform 0.3s ease-out;
 }
 
 .addCircleOutline:hover svg {

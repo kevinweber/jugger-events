@@ -153,6 +153,13 @@
       "color-hex-case": "upper",
       "string-quotes": "single",
       "font-family-name-quotes": "always-where-recommended",
+      "max-empty-lines": 2,
+      "selector-list-comma-newline-after": "always-multi-line",
+      "selector-combinator-space-after": "never",
+      "selector-combinator-space-before": "never",
+      "selector-combinator-space-after": "never",
+      "selector-combinator-space-before": "never",
+      "rule-nested-empty-line-before": "never-multi-line",
       "selector-pseudo-class-no-unknown": [
         true,
         {
