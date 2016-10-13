@@ -10,13 +10,22 @@ import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 import request from 'utils/request';
 import { selectUsername } from 'containers/HomePage/selectors';
 
+function getRequestURL() {
+  if (process.env.NODE_ENV === 'production') {
+    return 'http://kevinw.de/jugger-friends/wp-json/wp/v2/jugger-event';
+  }
+
+  return 'http://localhost/wordpress/jugger-events/wp-json/wp/v2/jugger-event';
+}
+
 /**
  * Github repos request/response handler
  */
 export function* getRepos() {
   // Select username from store
   const username = yield select(selectUsername());
-  const requestURL = 'http://localhost/wordpress/jugger-events/wp-json/wp/v2/jugger-event';
+  // Select request URL based on Node environment
+  const requestURL = getRequestURL();
 
   // Call our request helper (see 'utils/request')
   const repos = yield call(request, requestURL);
@@ -39,7 +48,7 @@ export function* getRepos() {
         type: currentItem.meta_box.jugger_event_type
       };
     });
-    
+
     yield put(reposLoaded(events, username));
   } else {
     yield put(repoLoadingError(repos.err));
