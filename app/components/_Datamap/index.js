@@ -46,7 +46,7 @@ export default class _Datamap extends React.Component {
 				showTooltip: this.state.currentEvent.stickTooltip,
 				stickTooltip: this.state.currentEvent.stickTooltip
 			}
-		})
+		});
 	}
 
 	onMouseOver(event) {
@@ -200,7 +200,7 @@ export default class _Datamap extends React.Component {
 				<Tooltip showTooltip={this.state.currentEvent.showTooltip} data={this.state.currentEvent.data} />
         {legend}
       </div>
-    )
+    );
   }
 }
 
