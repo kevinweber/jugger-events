@@ -13,6 +13,7 @@ const defaults = require('lodash/defaultsDeep');
 const webpack = require('webpack');
 const pkg = require(join(process.cwd(), 'package.json'));
 const dllPlugin = require('../config').dllPlugin;
+const path = require('path');
 
 if (!pkg.dllPlugin) { process.exit(0); }
 
@@ -22,6 +23,11 @@ const outputPath = join(process.cwd(), dllConfig.path);
 module.exports = {
   context: process.cwd(),
   entry: dllConfig.dlls ? dllConfig.dlls : dllPlugin.entry(pkg),
+  resolve: {
+    alias: {
+      'mapbox-gl': path.resolve('./node_modules/mapbox-gl/dist/mapbox-gl.js')
+    },
+  },
   devtool: 'eval',
   output: {
     filename: '[name].dll.js',
@@ -31,4 +37,7 @@ module.exports = {
   plugins: [
     new webpack.DllPlugin({ name: '[name]', path: join(outputPath, '[name].json') }), // eslint-disable-line no-new
   ],
+  node: {
+    fs: 'empty'
+  }
 };
