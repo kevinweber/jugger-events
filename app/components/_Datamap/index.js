@@ -25,6 +25,11 @@ const propChangeRequiresMapClear = (oldProps, newProps) => {
   );
 };
 
+const DEFAULT_PROPS = {
+	aspectRatio: 0.45,
+	responsive: true
+};
+
 export default class _Datamap extends React.Component {
 
   constructor(props) {
@@ -32,25 +37,6 @@ export default class _Datamap extends React.Component {
     this.state = {
 			currentEvent: {}
 		};
-  };
-
-  static propTypes  = {
-    arc: React.PropTypes.array,
-    arcOptions: React.PropTypes.object,
-    bubbleOptions: React.PropTypes.object,
-    bubbles: React.PropTypes.array,
-    data: React.PropTypes.object,
-    graticule: React.PropTypes.bool,
-    height: React.PropTypes.any,
-    labels: React.PropTypes.bool,
-    style: React.PropTypes.object,
-    updateChoroplethOptions: React.PropTypes.object,
-    width: React.PropTypes.any
-  };
-
-  static defaultProps = {
-    aspectRatio: 0.45,
-    responsive: true
   };
 
 	onMouseOut(event) {console.log(this.state.currentEvent.stickTooltip);
@@ -217,3 +203,19 @@ export default class _Datamap extends React.Component {
     )
   }
 }
+
+_Datamap.propTypes  = {
+	arc: React.PropTypes.array,
+	arcOptions: React.PropTypes.object,
+	bubbleOptions: React.PropTypes.object,
+	bubbles: React.PropTypes.array,
+	data: React.PropTypes.object,
+	graticule: React.PropTypes.bool,
+	height: React.PropTypes.any,
+	labels: React.PropTypes.bool,
+	style: React.PropTypes.object,
+	updateChoroplethOptions: React.PropTypes.object,
+	width: React.PropTypes.any
+};
+
+_Datamap.defaultProps = DEFAULT_PROPS;

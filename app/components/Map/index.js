@@ -9,33 +9,34 @@ import styles from './styles.css';
 import MapboxMap from 'components/_MapboxMap';
 import mapboxgl from 'mapbox-gl';
 
-export default class Map extends React.Component {
-  static dataTypes = {
-    defaultType: {
-      color: '#4e97cc',
-      icon: 'circle'
-    },
-    charity: {
-      color: '#ff6666',
-      icon: 'star'
-    },
-    tournament: {
-      color: '#ff6600',
-      icon: 'marker'
-    },
-    practice: {
-      color: '#2c2c29',
-      icon: 'circle'
-    },
-    info: {
-      color: '#ff6666',
-      icon: 'information'
-    },
-    other: {
-      color: '#54544e',
-      icon: 'circle'
-    }
+const DATA_TYPES = {
+  defaultType: {
+    color: '#4e97cc',
+    icon: 'circle'
+  },
+  charity: {
+    color: '#ff6666',
+    icon: 'star'
+  },
+  tournament: {
+    color: '#ff6600',
+    icon: 'marker'
+  },
+  practice: {
+    color: '#2c2c29',
+    icon: 'circle'
+  },
+  info: {
+    color: '#ff6666',
+    icon: 'information'
+  },
+  other: {
+    color: '#54544e',
+    icon: 'circle'
   }
+};
+
+export default class Map extends React.Component {
 
   // renderData(data) {
   //   return Object.values(data).map(function (currentEvent) {
@@ -60,7 +61,7 @@ export default class Map extends React.Component {
         "properties": {
           "title": currentEvent.title,
           // Icons: https://www.mapbox.com/maki-icons/
-          "icon": (Map.dataTypes[currentEvent.type] && Map.dataTypes[currentEvent.type].icon) || Map.dataTypes[currentEvent.defaultType].icon
+          "icon": (DATA_TYPES[currentEvent.type] && DATA_TYPES[currentEvent.type].icon) || DATA_TYPES[currentEvent.defaultType].icon
         }
       };
     });

@@ -1,8 +1,6 @@
 // Inspired by: https://github.com/uber/react-map-gl/blob/master/src/map.react.js
 
-import React, {
-  PropTypes
-} from 'react';
+import React from 'react';
 import styles from './styles.css';
 import config from '../../global.config';
 import mapboxgl from 'mapbox-gl';
