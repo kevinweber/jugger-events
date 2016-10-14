@@ -27,8 +27,12 @@
   # Redirect to the same URL with https://, ignoring all further rules if this one is in effect
   RewriteRule ^(.*) https://%{HTTP_HOST}/$1 [R,L]
 
+  # Force "www"
+  RewriteCond %{HTTP_HOST} !^www\.
+  RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
   # If we get to here, it means we are on https://
-  
+
   # If the file with the specified name in the browser doesn't exist
   RewriteCond %{REQUEST_FILENAME} !-f
 
