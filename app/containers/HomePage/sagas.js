@@ -12,7 +12,7 @@ import { selectUsername } from 'containers/HomePage/selectors';
 
 function getRequestURL() {
   if (process.env.NODE_ENV === 'production') {
-    return 'http://kevinw.de/jugger-friends/wp-json/wp/v2/jugger-event';
+    return 'https://kevinw.de/jugger-friends/wp-json/wp/v2/jugger-event';
   }
 
   return 'http://localhost/wordpress/jugger-events/wp-json/wp/v2/jugger-event';
