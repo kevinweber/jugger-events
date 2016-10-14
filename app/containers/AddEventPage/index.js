@@ -11,8 +11,6 @@ import { FormattedMessage } from 'react-intl';
 import Button from 'components/Button';
 import H1 from 'components/H1';
 
-import styles from './styles.css';
-
 export class AddEventPage extends React.Component {
   render() {
     return (
@@ -26,28 +24,20 @@ export class AddEventPage extends React.Component {
         <H1>
           <FormattedMessage {...messages.header} />
         </H1>
-        <ul className={styles.list}>
-          <li className={styles.listItem}>
-            <p className={styles.listItemTitle}>
-              Placeholder
-            </p>
-
-            <p>
-              Text
-            </p>
-          </li>
-        </ul>
+        <p>
+          Soon you'll be able to promote your events via www.juggerevents.com.
+        </p>
       </div>
     );
   }
 }
 AddEventPage.propTypes = {
-  
+
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    
+
   };
 }
 
