@@ -2,6 +2,8 @@
 
 html, body {
   height: 100%;
+  margin: 0;
+  padding: 0;
   width: 100%;
 }
 
@@ -13,6 +15,11 @@ body {
 
 body.fontLoaded {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+div {
+  margin: 0;
+  padding: 0;
 }
 
 :global(#app) {
