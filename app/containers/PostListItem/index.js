@@ -8,8 +8,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 
+import messages from './messages';
+
 // Documentation: https://github.com/yahoo/react-intl/wiki
-import { FormattedDate } from 'react-intl';
+import { FormattedDate, FormattedTime, FormattedMessage } from 'react-intl';
 
 import { selectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
@@ -46,7 +48,16 @@ export class PostListItem extends React.Component { // eslint-disable-line react
         <div className={styles.titleWrapper}>{title}</div>
         <div className={styles.subtitleWrapper}>
           <div className={styles.dateWrapper}>
-            <FormattedDate className={styles.date} value={item.dateTimeStart} />
+            <FormattedDate
+                className={styles.date}
+                value={item.dateTimeStart}
+                weekday='long'
+                // year='numeric'
+                month='long'
+                day='2-digit'
+                />
+            <span> <FormattedMessage {...messages.timeAt} /> </span>
+            <FormattedTime className={styles.time} value={item.dateTimeStart} />
           </div>
         </div>
       </div>

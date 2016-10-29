@@ -25,24 +25,9 @@
     "message": ""
   },
   {
-    "id": "boilerplate.containers.AddEventPage.css.message",
-    "defaultMessage": "Next generation CSS",
-    "message": "Die nächste Generation von CSS"
-  },
-  {
-    "id": "boilerplate.containers.AddEventPage.feedback.header",
-    "defaultMessage": "Instant feedback",
-    "message": "Sofortiges Feedback"
-  },
-  {
-    "id": "boilerplate.containers.AddEventPage.feedback.message",
-    "defaultMessage": "Enjoy the best DX and code your app at the speed of thought! Your\n    saved changes to the CSS and JS are reflected instantaneously\n    without refreshing the page. Preserve application state even when\n    you update something in the underlying code!",
-    "message": "Genießen Sie die beste Entwicklungserfahrung und programmieren Sie Ihre App so schnell wie noch nie! Ihre Änderungen an dem CSS und JavaScript sind sofort reflektiert, ohne die Seite aktualisieren zu müssen. So bleibt der Anwendungszustand bestehen, auch wenn Sie etwas in dem darunter liegenden Code aktualisieren!"
-  },
-  {
-    "id": "boilerplate.containers.AddEventPage.header",
-    "defaultMessage": "Features",
-    "message": ""
+    "id": "boilerplate.containers.PostListItem.time.at",
+    "defaultMessage": "at",
+    "message": "um"
   },
   {
     "id": "boilerplate.containers.HomePage.features.Button",

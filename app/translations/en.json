@@ -25,6 +25,11 @@
     "message": "Next generation CSS"
   },
   {
+    "id": "boilerplate.containers.PostListItem.time.at",
+    "defaultMessage": "at",
+    "message": "at"
+  },
+  {
     "id": "boilerplate.containers.HomePage.features.Button",
     "defaultMessage": "Features",
     "message": "Features"
