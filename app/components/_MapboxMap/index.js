@@ -6,11 +6,11 @@ import config from '../../global.config';
 import mapboxgl from 'mapbox-gl';
 
 const DEFAULT_PROPS = {
-  center: [-112.1554504, 39.8117865], // [longitude, latitude]
+  center: [-122.2594471, 37.8000593], // [longitude, latitude]
   dragRotate: false,
   mapboxApiAccessToken: config.MAPBOX_API_ACCESS_TOKEN,
   style: 'mapbox://styles/mapbox/light-v9',
-  zoom: 4
+  zoom: 9
 };
 
 export default class MapboxMap extends React.Component {
