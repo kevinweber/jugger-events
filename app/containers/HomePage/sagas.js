@@ -18,6 +18,26 @@ function getRequestURL() {
   return 'http://localhost/wordpress/jugger-events/wp-json/wp/v2/jugger-event';
 }
 
+function mapData(data) {
+  return data.map(function (currentItem) {
+    // We map the API's object to our own list of properties so we can easily react on changes to the API
+    return {
+      dateTimeStart: currentItem.meta_box.jugger_event_datetime_start,
+      dateTimeEnd: currentItem.meta_box.jugger_event_datetime_end,
+      description: currentItem.content.rendered,
+      id: currentItem.id,
+      link: currentItem.meta_box.jugger_event_event_link,
+      location: {
+        address: currentItem.meta_box.jugger_event_address,
+        latitude: currentItem.meta_box.map.latitude,
+        longitude: currentItem.meta_box.map.longitude
+      },
+      title: currentItem.title.rendered,
+      type: currentItem.meta_box.jugger_event_type
+    };
+  });
+}
+
 /**
  * Github repos request/response handler
  */
@@ -31,23 +51,7 @@ export function* getRepos() {
   const repos = yield call(request, requestURL);
 
   if (!repos.err) {
-    let events = repos.data.map(function (currentItem) {
-      // We map the API's object to our own list of properties so we can easily react on changes to the API
-      return {
-        dateTimeStart: currentItem.meta_box.jugger_event_datetime_start,
-        dateTimeEnd: currentItem.meta_box.jugger_event_datetime_end,
-        description: currentItem.content.rendered,
-        id: currentItem.id,
-        link: currentItem.meta_box.jugger_event_event_link,
-        location: {
-          address: currentItem.meta_box.jugger_event_address,
-          latitude: currentItem.meta_box.map.latitude,
-          longitude: currentItem.meta_box.map.longitude
-        },
-        title: currentItem.title.rendered,
-        type: currentItem.meta_box.jugger_event_type
-      };
-    });
+    let events = mapData(repos.data);
 
     yield put(reposLoaded(events, username));
   } else {
