@@ -1,5 +1,14 @@
 .footer {
   display: flex;
+  font-size: 0.75em;
   justify-content: space-between;
   padding-bottom: 1rem;
+}
+
+.footer a {
+  color: var(--black);
+}
+
+.footer a:hover {
+  color: var(--black);
 }
