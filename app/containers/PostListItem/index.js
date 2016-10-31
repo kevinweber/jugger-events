@@ -64,24 +64,27 @@ export class PostListItem extends React.Component { // eslint-disable-line react
       );
     }
 
+    const subtitle = (
+      <div className={styles.subtitleWrapper}>
+        <div className={styles.dateWrapper}>
+          <FormattedDate
+              className={styles.date}
+              value={item.dateTimeStart}
+              weekday='long'
+              // year='numeric'
+              month='long'
+              day='2-digit' />
+          <span> <FormattedMessage {...messages.timeAt} /> </span>
+          <FormattedTime className={styles.time} value={item.dateTimeStart} />
+        </div>
+      </div>
+    );
 
     const content = (
       <div className={styles.postWrapper}>
         <Surtitle text={this.surtitleText()} />
         <div className={styles.titleWrapper}>{title}</div>
-        <div className={styles.subtitleWrapper}>
-          <div className={styles.dateWrapper}>
-            <FormattedDate
-                className={styles.date}
-                value={item.dateTimeStart}
-                weekday='long'
-                // year='numeric'
-                month='long'
-                day='2-digit' />
-            <span> <FormattedMessage {...messages.timeAt} /> </span>
-            <FormattedTime className={styles.time} value={item.dateTimeStart} />
-          </div>
-        </div>
+        {subtitle}
       </div>
     );
 
