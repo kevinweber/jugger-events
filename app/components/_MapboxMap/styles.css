@@ -1,6 +1,7 @@
 .mapContainer {
   height: 300px;
   margin-top: 0.75rem;
+  overflow: hidden;
 }
 
 .mapContainer canvas {
@@ -23,6 +24,18 @@
   line-height: 0;
   pointer-events: none;
   position: relative;
+}
+
+:global .mapboxgl-interactive {
+  height: 0;
+}
+
+:global .mapboxgl-marker {
+  background-size: contain;
+}
+
+:global .mapboxgl-marker:hover {
+  cursor: pointer;
 }
 
 :global .mapboxgl-control-container>div {

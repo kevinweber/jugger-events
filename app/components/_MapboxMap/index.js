@@ -5,6 +5,9 @@ import styles from './styles.css';
 import config from '../../global.config';
 import mapboxgl from 'mapbox-gl';
 
+import { encodeSvg } from 'utils/converter';
+import { MakiIcon } from 'components/IconsMaki';
+
 const DEFAULT_PROPS = {
   center: [-122.2594471, 37.8000593], // [longitude, latitude]
   dragRotate: false,
@@ -44,7 +47,7 @@ export default class MapboxMap extends React.Component {
     }
   }
 
-  _onMapLoad() {
+  addSource() {
     // Documentation: https://www.mapbox.com/mapbox-gl-js/api/#Map#addSource
     let source = {
       "type": "geojson",
@@ -55,7 +58,9 @@ export default class MapboxMap extends React.Component {
     };
 
     this._map.addSource("points", source);
+  }
 
+  addLayer() {
     // Documentation: https://www.mapbox.com/mapbox-gl-style-spec/#layers
     let layer = {
       "id": "points",
@@ -63,16 +68,57 @@ export default class MapboxMap extends React.Component {
       "source": "points",
       // Documentation: https://www.mapbox.com/mapbox-gl-style-spec/#layers-symbol
       "layout": {
-        "icon-image": "{icon}-11",
+        // "icon-image": "{icon}-11",
         "text-field": "{title}",
         // "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-        "text-offset": [0, 0.6],
+        "text-offset": [0, 1.1],
         "text-size": 12,
         "text-anchor": "top"
+      },
+      // Documentation: https://www.mapbox.com/mapbox-gl-style-spec/#paint_symbol
+      "paint": {
+        "text-color": "#ff6600",
+        "text-halo-blur": 1,
+        "text-halo-color": "#ffffff",
+        "text-halo-width": 1
       }
     };
 
     this._map.addLayer(layer);
+  }
+
+  addMarkers() {
+    this.props.data.forEach((marker) => {
+      let element = document.createElement('div'),
+        link = marker.data.link;
+
+      element.className = 'marker';
+      element.style.backgroundImage = 'url(' + encodeSvg(
+        <MakiIcon name={marker.properties.icon.type} />
+      ) + ')';
+      element.style.width = marker.properties.icon.iconSize + 'px';
+      element.style.height = marker.properties.icon.iconSize + 'px';
+
+      // TODO: Show tooltip or popup
+      if (link !== undefined && link.length > 0) {
+        element.addEventListener('click', function () {
+          window.open(link, '_blank');
+        });
+      }
+
+      // Add marker to map
+      new mapboxgl.Marker(element, {
+          offset: [-marker.properties.icon.iconSize / 2, -marker.properties.icon.iconSize / 2]
+        })
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(this._map);
+    });
+  }
+
+  _onMapLoad() {
+    this.addSource();
+    this.addLayer();
+    this.addMarkers();
   }
 
   _updateSource(name) {

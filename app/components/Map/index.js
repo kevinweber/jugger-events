@@ -11,11 +11,13 @@ import mapboxgl from 'mapbox-gl';
 const DATA_TYPES = {
   defaultType: {
     color: '#4e97cc',
-    icon: 'circle'
+    icon: 'circle',
+    iconSize: 8
   },
   charity: {
     color: '#ff6666',
-    icon: 'star'
+    icon: 'star',
+    iconSize: 10
   },
   tournament: {
     color: '#ff6600',
@@ -52,16 +54,19 @@ export default class Map extends React.Component {
   renderData(data) {
     return Object.values(data).map(function (currentEvent) {
       return {
-        "type": "Feature",
-        "geometry": {
-          "type": "Point",
-          "coordinates": [currentEvent.location.longitude, currentEvent.location.latitude]
+        'type': 'Feature',
+        'geometry': {
+          'type': 'Point',
+          'coordinates': [currentEvent.location.longitude, currentEvent.location.latitude]
         },
-        "properties": {
-          "title": currentEvent.title,
-          // Icons: https://www.mapbox.com/maki-icons/
-          "icon": (DATA_TYPES[currentEvent.type] && DATA_TYPES[currentEvent.type].icon) || DATA_TYPES[currentEvent.defaultType].icon
-        }
+        'properties': {
+          'title': currentEvent.title,
+          'icon': {
+            'type': (DATA_TYPES[currentEvent.type] && DATA_TYPES[currentEvent.type].icon) || DATA_TYPES[currentEvent.defaultType].icon,
+            'iconSize': (DATA_TYPES[currentEvent.type] && DATA_TYPES[currentEvent.type].iconSize) || DATA_TYPES.defaultType.iconSize
+          }
+        },
+        'data': currentEvent
       };
     });
   }
