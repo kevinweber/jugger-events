@@ -21,6 +21,29 @@ import Surtitle from 'components/Surtitle';
 import styles from './styles.css';
 
 export class PostListItem extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  cityFromAddress(address) {
+    let splittedAddress = address.split(', ');
+
+    return splittedAddress[splittedAddress.length - 3];
+  }
+
+  surtitleText() {
+    let type = this.capitalizeFirstLetter(this.props.item.type),
+      address = this.props.item.location.address,
+      city = this.cityFromAddress(address);
+
+    if (city.length > 0) {
+      return type + ' in ' + city;
+    }
+
+    return type;
+  }
+
   render() {
     const item = this.props.item;
     let title;
@@ -44,7 +67,7 @@ export class PostListItem extends React.Component { // eslint-disable-line react
 
     const content = (
       <div className={styles.postWrapper}>
-        <Surtitle text={item.type} />
+        <Surtitle text={this.surtitleText()} />
         <div className={styles.titleWrapper}>{title}</div>
         <div className={styles.subtitleWrapper}>
           <div className={styles.dateWrapper}>
@@ -54,8 +77,7 @@ export class PostListItem extends React.Component { // eslint-disable-line react
                 weekday='long'
                 // year='numeric'
                 month='long'
-                day='2-digit'
-                />
+                day='2-digit' />
             <span> <FormattedMessage {...messages.timeAt} /> </span>
             <FormattedTime className={styles.time} value={item.dateTimeStart} />
           </div>
