@@ -26,6 +26,7 @@ export class PostListItem extends React.Component { // eslint-disable-line react
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  // Remove numbers, including following white spaces
   removeNumbers(string) {
     return string.replace(/[0-9](\ )*/g, '');
   }
