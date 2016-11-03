@@ -26,10 +26,23 @@ export class PostListItem extends React.Component { // eslint-disable-line react
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  removeNumbers(string) {
+    return string.replace(/[0-9](\ )*/g, '');
+  }
+
   cityFromAddress(address) {
     let splittedAddress = address.split(', ');
 
-    return splittedAddress[splittedAddress.length - 3];
+    if (splittedAddress.length > 3) {
+      // Covers case "6350 Eldridge St, Arvada, CO 80004, USA"
+      return splittedAddress[splittedAddress.length - 3];
+    } else if (splittedAddress.length === 3) {
+      // Covers case "Alexanderstraße 2B, 23566 Lübeck, Deutschland"
+      return this.removeNumbers(splittedAddress[splittedAddress.length - 2]);
+    } else {
+      // Covers case "Berkley, California"
+      return splittedAddress[0];
+    }
   }
 
   surtitleText() {
