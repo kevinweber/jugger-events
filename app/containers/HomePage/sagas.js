@@ -12,28 +12,28 @@ import { selectUsername } from 'containers/HomePage/selectors';
 
 function getRequestURL() {
   if (process.env.NODE_ENV === 'production') {
-    return 'https://kevinw.de/jugger-friends/wp-json/wp/v2/jugger-event';
+    return 'https://kevinw.de/jugger-friends/wp-json/jugger/events';
   }
 
-  return 'http://localhost/wordpress/jugger-events/wp-json/wp/v2/jugger-event';
+  return 'http://localhost/wordpress/jugger-events/wp-json/jugger/events';
 }
 
 function mapData(data) {
   return data.map(function (currentItem) {
     // We map the API's object to our own list of properties so we can easily react on changes to the API
     return {
-      dateTimeStart: currentItem.meta_box.jugger_event_datetime_start,
-      dateTimeEnd: currentItem.meta_box.jugger_event_datetime_end,
-      description: currentItem.content.rendered,
+      dateTimeStart: currentItem.dateTimeStart,
+      dateTimeEnd: currentItem.dateTimeEnd,
+      description: currentItem.description,
       id: currentItem.id,
-      link: currentItem.meta_box.jugger_event_event_link,
+      link: currentItem.link,
       location: {
-        address: currentItem.meta_box.jugger_event_address,
-        latitude: currentItem.meta_box.map.latitude,
-        longitude: currentItem.meta_box.map.longitude
+        address: currentItem.location.address,
+        latitude: currentItem.location.latitude,
+        longitude: currentItem.location.longitude
       },
-      title: currentItem.title.rendered,
-      type: currentItem.meta_box.jugger_event_type
+      title: currentItem.title,
+      type: currentItem.type
     };
   });
 }
