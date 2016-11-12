@@ -13,12 +13,12 @@ import { dataLoaded, dataLoadingError } from 'containers/App/actions';
 import request from 'utils/request';
 
 // Select request URL based on Node environment
-function requestURL(path) {
+function requestURL(filter) {
   if (process.env.NODE_ENV === 'production') {
-    return 'https://kevinw.de/jugger-friends/wp-json/jugger/' + path;
+    return 'https://kevinw.de/jugger-friends/wp-json/jugger/events/' + filter;
   }
 
-  return 'http://localhost/wordpress/jugger-events/wp-json/jugger/' + path;
+  return 'http://localhost/wordpress/jugger-events/wp-json/jugger/events/' + filter;
 }
 
 function mapData(data) {
@@ -44,14 +44,14 @@ function mapData(data) {
 /**
  * Data request/response handler
  */
-export function* getData(eventType) {
+export function* getData(filter) {
   // Call our request helper (see 'utils/request')
-  const upcomingEvents = yield call(request, requestURL('events/' + eventType));
+  const upcomingEvents = yield call(request, requestURL(filter));
 
   if (!upcomingEvents.err) {
     let events = mapData(upcomingEvents.data);
 
-    yield put(dataLoaded(events, eventType));
+    yield put(dataLoaded(events, filter));
   } else {
     yield put(dataLoadingError(upcomingEvents.err));
   }
@@ -60,16 +60,16 @@ export function* getData(eventType) {
 /**
  * Watches for LOAD_DATA action and calls handler
  */
-export function* getDataWatcher(type, eventType) {
+export function* getDataWatcher(type, filter) {
   while (yield take(type)) {
-    yield call(getData.bind(null, eventType));
+    yield call(getData.bind(null, filter));
   }
 }
 
 /**
  * Root saga manages watcher lifecycle
  */
-export function* eventsPast(type, eventType) {
+export function* eventsPast(type, filter) {
   // Fork watcher so we can continue execution
   const watcher = yield fork(getDataWatcher.bind(null, LOAD_DATA_EVENTS_PAST, 'past'));
 
@@ -78,7 +78,7 @@ export function* eventsPast(type, eventType) {
   yield cancel(watcher);
 }
 
-export function* eventsUpcoming(type, eventType) {
+export function* eventsUpcoming(type, filter) {
   // Fork watcher so we can continue execution
   const watcher = yield fork(getDataWatcher.bind(null, LOAD_DATA_EVENTS_UPCOMING, 'upcoming'));
 

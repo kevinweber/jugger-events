@@ -38,11 +38,11 @@ export function loadData(type) {
  *
  * @return {object}      An action object with a type of LOAD_DATA_SUCCESS passing the data
  */
-export function dataLoaded(events, eventType) {
+export function dataLoaded(events, filter) {
   return {
     type: LOAD_DATA_SUCCESS,
     events,
-    eventType // 'upcoming' | 'past'
+    filter // 'upcoming' | 'past'
   };
 }
 

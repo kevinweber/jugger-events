@@ -62,6 +62,9 @@ function sortByDateDesc(data) {
 export class HomePage extends React.Component {
   componentDidMount() {
     this.props.dispatch(this.props.loadData(LOAD_DATA_EVENTS_UPCOMING));
+
+    // TODO?: Only load past events if either no event is upcoming or
+    // the user clicks on a link/button to show past events
     this.props.dispatch(this.props.loadData(LOAD_DATA_EVENTS_PAST));
   }
 

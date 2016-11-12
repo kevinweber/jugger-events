@@ -32,7 +32,7 @@ const initialState = fromJS({
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
-    
+
     case LOAD_DATA_EVENTS_UPCOMING:
       return state
         .set('loading', true)
@@ -47,7 +47,7 @@ function appReducer(state = initialState, action) {
 
     case LOAD_DATA_SUCCESS:
       return state
-        .setIn(['data', 'events', action.eventType], action.events)
+        .setIn(['data', 'events', action.filter], action.events)
         .set('loading', false);
 
     case LOAD_DATA_ERROR:
