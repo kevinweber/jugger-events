@@ -16,9 +16,14 @@ const selectError = () => createSelector(
   (globalState) => globalState.get('error')
 );
 
-const selectRepos = () => createSelector(
+const selectEventsUpcoming = () => createSelector(
   selectGlobal(),
-  (globalState) => globalState.getIn(['userData', 'repositories'])
+  (globalState) => globalState.getIn(['data', 'events', 'upcoming'])
+);
+
+const selectEventsPast = () => createSelector(
+  selectGlobal(),
+  (globalState) => globalState.getIn(['data', 'events', 'past'])
 );
 
 const selectLocationState = () => {
@@ -41,6 +46,7 @@ export {
   selectGlobal,
   selectLoading,
   selectError,
-  selectRepos,
+  selectEventsPast,
+  selectEventsUpcoming,
   selectLocationState,
 };

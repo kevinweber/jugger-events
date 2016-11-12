@@ -4,7 +4,10 @@
 
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_DATA_EVENTS } from 'containers/App/constants';
+import {
+  LOAD_DATA_EVENTS_PAST,
+  LOAD_DATA_EVENTS_UPCOMING
+} from 'containers/App/constants';
 import { dataLoaded, dataLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
@@ -41,35 +44,43 @@ function mapData(data) {
 /**
  * Data request/response handler
  */
-export function* getData() {
+export function* getData(eventType) {
   // Call our request helper (see 'utils/request')
-  const upcomingEvents = yield call(request, requestURL('events/upcoming'));
+  const upcomingEvents = yield call(request, requestURL('events/' + eventType));
 
   if (!upcomingEvents.err) {
     let events = mapData(upcomingEvents.data);
 
-    yield put(dataLoaded(events));
+    yield put(dataLoaded(events, eventType));
   } else {
     yield put(dataLoadingError(upcomingEvents.err));
   }
 }
 
-
 /**
  * Watches for LOAD_DATA action and calls handler
  */
-export function* getDataWatcher() {
-  while (yield take(LOAD_DATA_EVENTS)) {
-    yield call(getData);
+export function* getDataWatcher(type, eventType) {
+  while (yield take(type)) {
+    yield call(getData.bind(null, eventType));
   }
 }
 
 /**
  * Root saga manages watcher lifecycle
  */
-export function* apiData() {
+export function* eventsPast(type, eventType) {
   // Fork watcher so we can continue execution
-  const watcher = yield fork(getDataWatcher);
+  const watcher = yield fork(getDataWatcher.bind(null, LOAD_DATA_EVENTS_PAST, 'past'));
+
+  // Suspend execution until location changes
+  yield take(LOCATION_CHANGE);
+  yield cancel(watcher);
+}
+
+export function* eventsUpcoming(type, eventType) {
+  // Fork watcher so we can continue execution
+  const watcher = yield fork(getDataWatcher.bind(null, LOAD_DATA_EVENTS_UPCOMING, 'upcoming'));
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
@@ -78,5 +89,6 @@ export function* apiData() {
 
 // Bootstrap sagas
 export default [
-  apiData,
+  eventsPast,
+  eventsUpcoming
 ];

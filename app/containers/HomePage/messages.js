@@ -10,6 +10,10 @@ export default defineMessages({
     id: 'boilerplate.containers.HomePage.upcoming.header',
     defaultMessage: 'Upcoming',
   },
+  pastHeader: {
+    id: 'boilerplate.containers.HomePage.past.header',
+    defaultMessage: 'Past',
+  },
   featuresButton: {
     id: 'boilerplate.containers.HomePage.features.Button',
     defaultMessage: 'Features',

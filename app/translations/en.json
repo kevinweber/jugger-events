@@ -32,6 +32,10 @@
     "message": "Upcoming"
   },
   {
+    "id": "boilerplate.containers.HomePage.past.header",
+    "message": "Past"
+  },
+  {
     "id": "boilerplate.containers.NotFoundPage.header",
     "message": "Page not found."
   },

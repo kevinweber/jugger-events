@@ -11,7 +11,13 @@ import messages from './messages';
 import { createStructuredSelector } from 'reselect';
 
 import {
-  selectRepos,
+  LOAD_DATA_EVENTS_PAST,
+  LOAD_DATA_EVENTS_UPCOMING,
+} from 'containers/App/constants';
+
+import {
+  selectEventsPast,
+  selectEventsUpcoming,
   selectLoading,
   selectError,
 } from 'containers/App/selectors';
@@ -55,15 +61,17 @@ function sortByDateDesc(data) {
 
 export class HomePage extends React.Component {
   componentDidMount() {
-    this.props.dispatch(this.props.loadData());
+    this.props.dispatch(this.props.loadData(LOAD_DATA_EVENTS_UPCOMING));
+    this.props.dispatch(this.props.loadData(LOAD_DATA_EVENTS_PAST));
   }
 
-  render() {
-    let mainContent = null;
+  // TODO: Make this an actual component
+  eventSection(eventData) {
+    let component = null;
 
     // Show a loading indicator when we're loading
     if (this.props.loading) {
-      mainContent = (<List component={LoadingIndicator} />);
+      component = (<List component={LoadingIndicator} />);
 
     // Show an error if there is one
     } else if (this.props.error !== false) {
@@ -72,23 +80,27 @@ export class HomePage extends React.Component {
           <FormattedMessage {...messages.noResultsError} />
         </ListItem>
       );
-      mainContent = (<List component={ErrorComponent} />);
+      component = (<List component={ErrorComponent} />);
 
-    } else if (this.props.repos.length === 0) {
+    } else if (eventData.length === 0) {
       const NoResultsComponent = () => (
         <ListItem className={styles.noResults}>
           <FormattedMessage {...messages.noResultsUpcoming} />
         </ListItem>
       );
-      mainContent = (<List component={NoResultsComponent} />);
+      component = (<List component={NoResultsComponent} />);
 
-    // If we're not loading, don't have an error and there are repos, show the repos
-    } else if (this.props.repos !== false) {
-      let sortedData = sortByDateAsc(this.props.repos);
+    // If we're not loading, don't have an error and there are component, show the component
+    } else if (eventData !== false) {
+      let sortedData = sortByDateAsc(eventData);
 
-      mainContent = (<List items={sortedData} component={PostListItem} />);
+      component = (<List items={sortedData} component={PostListItem} />);
     }
 
+    return component;
+  }
+
+  render() {
     return (
       <article>
         <Helmet
@@ -99,16 +111,23 @@ export class HomePage extends React.Component {
         />
         <div>
           <section>
-            <Map data={this.props.repos} />
+            <Map data={this.props.eventsUpcoming} />
           </section>
           <section className={styles.textSection}>
             <H2 className={styles.headingWithIcon}>
               <FormattedMessage {...messages.upcomingHeader} />
               <Button className={styles.refresh}>
-                <Autorenew onClick={this.props.refreshEventsUpcoming} />
+                <Autorenew onClick={this.props.refreshEvents} />
               </Button>
             </H2>
-            {mainContent}
+            {this.eventSection(this.props.eventsUpcoming)}
+          </section>
+
+          <section className={styles.textSection}>
+            <H2 className={styles.headingWithIcon}>
+              <FormattedMessage {...messages.pastHeader} />
+            </H2>
+            {this.eventSection(this.props.eventsPast)}
           </section>
         </div>
       </article>
@@ -116,24 +135,28 @@ export class HomePage extends React.Component {
   }
 }
 
+const arrayOrBool = React.PropTypes.oneOfType([
+  React.PropTypes.array,
+  React.PropTypes.bool,
+]);
+
 HomePage.propTypes = {
   loading: React.PropTypes.bool,
   error: React.PropTypes.oneOfType([
     React.PropTypes.object,
     React.PropTypes.bool,
   ]),
-  repos: React.PropTypes.oneOfType([
-    React.PropTypes.array,
-    React.PropTypes.bool,
-  ]),
-  refreshEventsUpcoming: React.PropTypes.func
+  eventsPast: arrayOrBool,
+  eventsUpcoming: arrayOrBool,
+  refreshEvents: React.PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    refreshEventsUpcoming: (evt) => {
+    refreshEvents: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadData());
+      dispatch(loadData(LOAD_DATA_EVENTS_PAST));
+      dispatch(loadData(LOAD_DATA_EVENTS_UPCOMING));
     },
 
     loadData,
@@ -142,7 +165,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
-  repos: selectRepos(),
+  eventsPast: selectEventsPast(),
+  eventsUpcoming: selectEventsUpcoming(),
   loading: selectLoading(),
   error: selectError(),
 });

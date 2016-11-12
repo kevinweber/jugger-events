@@ -36,6 +36,10 @@
     "message": "Demnächst"
   },
   {
+    "id": "boilerplate.containers.HomePage.past.header",
+    "message": "Vorherige Events"
+  },
+  {
     "id": "boilerplate.containers.NotFoundPage.header",
     "message": "Seite nicht gefunden."
   },
