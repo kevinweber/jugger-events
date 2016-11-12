@@ -1,72 +1,58 @@
 [
   {
     "id": "app.components.LocaleToggle.de",
-    "defaultMessage": "de",
-    "message": ""
+    "message": "de"
   },
   {
     "id": "app.components.LocaleToggle.en",
-    "defaultMessage": "en",
-    "message": ""
+    "message": "en"
   },
   {
     "id": "boilerplate.components.Footer.author.message",
-    "defaultMessage": "A 🎁 for the jugger community. By {author}.",
     "message": "Ein 🎁 für die Jugger-Gemeinschaft. Von {author}."
   },
   {
     "id": "boilerplate.components.Footer.license.message",
-    "defaultMessage": "This project is licensed under the MIT license.",
     "message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht."
   },
   {
     "id": "boilerplate.containers.AddEventPage.css.header",
-    "defaultMessage": "Features",
-    "message": ""
+    "message": "Features"
   },
   {
     "id": "boilerplate.containers.PostListItem.time.at",
-    "defaultMessage": "at",
     "message": "um"
   },
   {
     "id": "boilerplate.containers.HomePage.features.Button",
-    "defaultMessage": "Features",
-    "message": ""
+    "message": "Features"
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.error",
-    "defaultMessage": "Something went wrong, please try again!",
     "message": "Irgendetwas ist anders gelaufen als normal. Bitte lade die Seite erneut."
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.upcoming",
-    "defaultMessage": "Upcoming events to be announced. Keep coming back. Check out past events to get a feeling when the next events will take place.",
     "message": "Weitere Events werden bald verkündet. Besuche diese Seite regelmäßig, um kein Event zu verpassen. Schau dir auch vergangene Events an, um ein Gefühl dafür zu bekommen, wann die nächsten Events in deiner Nähe stattfinden werden."
   },
   {
     "id": "boilerplate.containers.HomePage.start_project.header",
-    "defaultMessage": "Start your next react project in seconds",
     "message": "Beginnen Sie Ihr nächstes React Projekt in Sekunden"
   },
   {
     "id": "boilerplate.containers.HomePage.start_project.message",
-    "defaultMessage": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
     "message": "Ein skalierendes, offline-first Fundament mit der besten DX und einem Fokus auf Performance und bewährte Methoden"
   },
   {
     "id": "boilerplate.containers.HomePage.upcoming.header",
-    "defaultMessage": "Upcoming",
     "message": "Demnächst"
   },
   {
     "id": "boilerplate.containers.NotFoundPage.header",
-    "defaultMessage": "Page not found.",
     "message": "Seite nicht gefunden."
   },
   {
     "id": "boilerplate.containers.NotFoundPage.home",
-    "defaultMessage": "Home",
-    "message": ""
+    "message": "Startseite"
   }
 ]

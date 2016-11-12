@@ -1,72 +1,58 @@
 [
   {
     "id": "app.components.LocaleToggle.de",
-    "defaultMessage": "de",
-    "message": ""
+    "message": "de"
   },
   {
     "id": "app.components.LocaleToggle.en",
-    "defaultMessage": "en",
-    "message": ""
+    "message": "en"
   },
   {
     "id": "boilerplate.components.Footer.author.message",
-    "defaultMessage": "A 🎁 for the jugger community. By {author}.",
     "message": "A 🎁 for the jugger community. By {author}."
   },
   {
     "id": "boilerplate.components.Footer.license.message",
-    "defaultMessage": "This project is licensed under the MIT license.",
     "message": "This project is licensed under the MIT license."
   },
   {
     "id": "boilerplate.containers.AddEventPage.css.header",
-    "defaultMessage": "Features",
     "message": "Next generation CSS"
   },
   {
     "id": "boilerplate.containers.PostListItem.time.at",
-    "defaultMessage": "at",
     "message": "at"
   },
   {
     "id": "boilerplate.containers.HomePage.features.Button",
-    "defaultMessage": "Features",
     "message": "Features"
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.error",
-    "defaultMessage": "Something went wrong, please try again!",
     "message": "Something went wrong, please try again!"
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.upcoming",
-    "defaultMessage": "Upcoming events to be announced. Keep coming back. Check out past events to get a feeling when the next events will take place.",
     "message": "Upcoming events to be announced. Keep coming back. Check out past events to get a feeling when the next events will take place."
   },
   {
     "id": "boilerplate.containers.HomePage.start_project.header",
-    "defaultMessage": "Start your next react project in seconds",
     "message": "Start your next react project in seconds"
   },
   {
     "id": "boilerplate.containers.HomePage.start_project.message",
-    "defaultMessage": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices",
     "message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices"
   },
   {
     "id": "boilerplate.containers.HomePage.upcoming.header",
-    "defaultMessage": "Upcoming",
     "message": "Upcoming"
   },
   {
     "id": "boilerplate.containers.NotFoundPage.header",
-    "defaultMessage": "Page not found.",
     "message": "Page not found."
   },
   {
     "id": "boilerplate.containers.NotFoundPage.home",
-    "defaultMessage": "Home",
     "message": "Home"
   }
 ]
