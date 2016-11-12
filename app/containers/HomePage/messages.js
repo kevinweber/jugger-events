@@ -22,4 +22,12 @@ export default defineMessages({
     id: 'boilerplate.containers.HomePage.features.Button',
     defaultMessage: 'Features',
   },
+  noResultsError: {
+    id: 'boilerplate.containers.HomePage.noResults.past',
+    defaultMessage: 'Something went wrong, please try again!',
+  },
+  noResultsUpcoming: {
+    id: 'boilerplate.containers.HomePage.noResults.upcoming',
+    defaultMessage: 'Upcoming events to be announced. Keep coming back. Check out past events to get a feeling when the next events will take place.',
+  },
 });

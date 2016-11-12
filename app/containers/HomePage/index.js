@@ -69,13 +69,17 @@ export class HomePage extends React.Component {
     // Show an error if there is one
     } else if (this.props.error !== false) {
       const ErrorComponent = () => (
-        <ListItem className={styles.error} item={'Something went wrong, please try again!'} />
+        <ListItem className={styles.error}>
+          <FormattedMessage {...messages.noResultsError} />
+        </ListItem>
       );
       mainContent = (<List component={ErrorComponent} />);
 
     } else if (this.props.repos.length === 0) {
       const NoResultsComponent = () => (
-        <ListItem className={styles.noResults} item={'Upcoming events to be announced. Keep coming back. Check out past events to get a feeling when the next events will take place.'} />
+        <ListItem className={styles.noResults}>
+          <FormattedMessage {...messages.noResultsUpcoming} />
+        </ListItem>
       );
       mainContent = (<List component={NoResultsComponent} />);
 

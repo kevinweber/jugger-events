@@ -35,6 +35,16 @@
     "message": ""
   },
   {
+    "id": "boilerplate.containers.HomePage.noResults.error",
+    "defaultMessage": "Something went wrong, please try again!",
+    "message": "Irgendetwas ist anders gelaufen als normal. Bitte lade die Seite erneut."
+  },
+  {
+    "id": "boilerplate.containers.HomePage.noResults.upcoming",
+    "defaultMessage": "Upcoming events to be announced. Keep coming back. Check out past events to get a feeling when the next events will take place.",
+    "message": "Weitere Events werden bald verkündet. Besuche diese Seite regelmäßig, um kein Event zu verpassen. Schau dir auch vergangene Events an, um ein Gefühl dafür zu bekommen, wann die nächsten Events in deiner Nähe stattfinden werden."
+  },
+  {
     "id": "boilerplate.containers.HomePage.start_project.header",
     "defaultMessage": "Start your next react project in seconds",
     "message": "Beginnen Sie Ihr nächstes React Projekt in Sekunden"

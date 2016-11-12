@@ -6,7 +6,7 @@ function ListItem(props) {
   return (
     <li className={props.className + ' ' + styles.item}>
       <div className={styles.itemContent}>
-        {props.item}
+        {props.item || props.children}
       </div>
     </li>
   );
