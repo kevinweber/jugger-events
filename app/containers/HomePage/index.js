@@ -66,7 +66,7 @@ export class HomePage extends React.Component {
   }
 
   // TODO: Make this an actual component
-  eventSection(eventData) {
+  eventSection(eventData, order) {
     let component = null;
 
     // Show a loading indicator when we're loading
@@ -92,7 +92,7 @@ export class HomePage extends React.Component {
 
     // If we're not loading, don't have an error and there are component, show the component
     } else if (eventData !== false) {
-      let sortedData = sortByDateAsc(eventData);
+      let sortedData = order === 'desc' ? sortByDateDesc(eventData) : sortByDateAsc(eventData);
 
       component = (<List items={sortedData} component={PostListItem} />);
     }
@@ -127,7 +127,7 @@ export class HomePage extends React.Component {
             <H2 className={styles.headingWithIcon}>
               <FormattedMessage {...messages.pastHeader} />
             </H2>
-            {this.eventSection(this.props.eventsPast)}
+            {this.eventSection(this.props.eventsPast, 'desc')}
           </section>
         </div>
       </article>
