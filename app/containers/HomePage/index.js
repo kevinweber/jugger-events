@@ -1,7 +1,5 @@
 /*
  * HomePage
- *
- * This is the first thing users see of our App, at the '/' route
  */
 
 import React from 'react';
@@ -52,9 +50,6 @@ function sortByDateDesc(data) {
 }
 
 export class HomePage extends React.Component {
-  /**
-   * when initial state username is not null, submit the form to load repos
-   */
   componentDidMount() {
     this.props.dispatch(this.props.loadData());
   }

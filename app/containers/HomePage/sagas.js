@@ -1,5 +1,5 @@
 /**
- * Gets the repositories of the user from Github
+ * Gets the data from the backend
  */
 
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
@@ -38,21 +38,21 @@ function mapData(data) {
 }
 
 /**
- * Github repos request/response handler
+ * Data request/response handler
  */
-export function* getRepos() {
+export function* getData() {
   // Select request URL based on Node environment
   const requestURL = getRequestURL();
 
   // Call our request helper (see 'utils/request')
-  const repos = yield call(request, requestURL);
+  const dataSources = yield call(request, requestURL);
 
-  if (!repos.err) {
-    let events = mapData(repos.data);
+  if (!dataSources.err) {
+    let events = mapData(dataSources.data);
 
     yield put(dataLoaded(events));
   } else {
-    yield put(dataLoadingError(repos.err));
+    yield put(dataLoadingError(dataSources.err));
   }
 }
 
@@ -60,18 +60,18 @@ export function* getRepos() {
 /**
  * Watches for LOAD_DATA action and calls handler
  */
-export function* getReposWatcher() {
+export function* getDataWatcher() {
   while (yield take(LOAD_DATA)) {
-    yield call(getRepos);
+    yield call(getData);
   }
 }
 
 /**
  * Root saga manages watcher lifecycle
  */
-export function* githubData() {
+export function* apiData() {
   // Fork watcher so we can continue execution
-  const watcher = yield fork(getReposWatcher);
+  const watcher = yield fork(getDataWatcher);
 
   // Suspend execution until location changes
   yield take(LOCATION_CHANGE);
@@ -80,5 +80,5 @@ export function* githubData() {
 
 // Bootstrap sagas
 export default [
-  githubData,
+  apiData,
 ];

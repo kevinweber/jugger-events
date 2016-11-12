@@ -2,7 +2,7 @@
  * App Actions
  *
  * Actions change things in your application
- * Since this boilerplate uses a uni-directional data flow, specifically redux,
+ * Since this app uses a uni-directional data flow, specifically redux,
  * we have these actions which are the only way your application interacts with
  * your appliction state. This guarantees that your state is up to date and nobody
  * messes it up weirdly somewhere.
@@ -35,14 +35,14 @@ export function loadData() {
 /**
  * Dispatched when the data are loaded by the request saga
  *
- * @param  {array} repos The data
+ * @param  {array} sources The data
  *
  * @return {object}      An action object with a type of LOAD_DATA_SUCCESS passing the data
  */
-export function dataLoaded(repos) {
+export function dataLoaded(sources) {
   return {
     type: LOAD_DATA_SUCCESS,
-    repos
+    sources
   };
 }
 
