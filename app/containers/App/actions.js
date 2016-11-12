@@ -22,7 +22,7 @@ import {
 } from './constants';
 
 /**
- * Load the repositories, this action starts the request saga
+ * Load the data, this action starts the request saga
  *
  * @return {object} An action object with a type of LOAD_DATA
  */
@@ -33,29 +33,27 @@ export function loadData() {
 }
 
 /**
- * Dispatched when the repositories are loaded by the request saga
+ * Dispatched when the data are loaded by the request saga
  *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
+ * @param  {array} repos The data
  *
- * @return {object}      An action object with a type of LOAD_DATA_SUCCESS passing the repos
+ * @return {object}      An action object with a type of LOAD_DATA_SUCCESS passing the data
  */
-export function reposLoaded(repos, username) {
+export function dataLoaded(repos) {
   return {
     type: LOAD_DATA_SUCCESS,
-    repos,
-    username,
+    repos
   };
 }
 
 /**
- * Dispatched when loading the repositories fails
+ * Dispatched when loading the data fails
  *
  * @param  {object} error The error
  *
  * @return {object}       An action object with a type of LOAD_DATA_ERROR passing the error
  */
-export function repoLoadingError(error) {
+export function dataLoadingError(error) {
   return {
     type: LOAD_DATA_ERROR,
     error,

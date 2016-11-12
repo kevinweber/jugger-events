@@ -5,10 +5,9 @@
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { LOAD_DATA } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+import { dataLoaded, dataLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
-import { selectUsername } from 'containers/HomePage/selectors';
 
 function getRequestURL() {
   if (process.env.NODE_ENV === 'production') {
@@ -42,8 +41,6 @@ function mapData(data) {
  * Github repos request/response handler
  */
 export function* getRepos() {
-  // Select username from store
-  const username = yield select(selectUsername());
   // Select request URL based on Node environment
   const requestURL = getRequestURL();
 
@@ -53,9 +50,9 @@ export function* getRepos() {
   if (!repos.err) {
     let events = mapData(repos.data);
 
-    yield put(reposLoaded(events, username));
+    yield put(dataLoaded(events));
   } else {
-    yield put(repoLoadingError(repos.err));
+    yield put(dataLoadingError(repos.err));
   }
 }
 
