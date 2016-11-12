@@ -12,7 +12,6 @@
 
 import {
   LOAD_DATA_EVENTS,
-
   LOAD_DATA_SUCCESS,
   LOAD_DATA_ERROR,
 } from './constants';
@@ -28,15 +27,12 @@ const initialState = fromJS({
 });
 
 function appReducer(state = initialState, action) {
-  state.set('requestUrl', action.requestUrl);
-
   switch (action.type) {
     case LOAD_DATA_EVENTS:
       return state
         .set('loading', true)
         .set('error', false)
         .setIn(['userData', 'repositories'], false);
-
     case LOAD_DATA_SUCCESS:
       return state
         .setIn(['userData', 'repositories'], action.events)

@@ -16,6 +16,7 @@
  */
 
 import {
+  LOAD_DATA_EVENTS,
   LOAD_DATA_SUCCESS,
   LOAD_DATA_ERROR,
 } from './constants';
@@ -26,7 +27,9 @@ import {
  * @return {object} An action object with a type of LOAD_DATA
  */
 export function loadData(type) {
-  return { type, requestUrl: "testttt" };
+  return {
+    type: LOAD_DATA_EVENTS
+  };
 }
 
 /**

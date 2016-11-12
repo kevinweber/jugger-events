@@ -23,7 +23,7 @@ export default defineMessages({
     defaultMessage: 'Features',
   },
   noResultsError: {
-    id: 'boilerplate.containers.HomePage.noResults.past',
+    id: 'boilerplate.containers.HomePage.noResults.error',
     defaultMessage: 'Something went wrong, please try again!',
   },
   noResultsUpcoming: {

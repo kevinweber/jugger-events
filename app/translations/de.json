@@ -29,7 +29,7 @@
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.error",
-    "message": "Irgendetwas ist anders gelaufen als normal. Bitte lade die Seite erneut."
+    "message": "Unerwarteter Fehler. Bitte lade die Seite erneut."
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.upcoming",

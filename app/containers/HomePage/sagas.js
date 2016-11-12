@@ -9,12 +9,13 @@ import { dataLoaded, dataLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
 
-function getRequestURL() {
+// Select request URL based on Node environment
+function requestURL(path) {
   if (process.env.NODE_ENV === 'production') {
-    return 'https://kevinw.de/jugger-friends/wp-json/jugger/events/upcoming';
+    return 'https://kevinw.de/jugger-friends/wp-json/jugger/' + path;
   }
 
-  return 'http://localhost/wordpress/jugger-events/wp-json/jugger/events/upcoming';
+  return 'http://localhost/wordpress/jugger-events/wp-json/jugger/' + path;
 }
 
 function mapData(data) {
@@ -41,18 +42,15 @@ function mapData(data) {
  * Data request/response handler
  */
 export function* getData() {
-  // Select request URL based on Node environment
-  const requestURL = getRequestURL();
-
   // Call our request helper (see 'utils/request')
-  const dataSources = yield call(request, requestURL);
+  const upcomingEvents = yield call(request, requestURL('events/upcoming'));
 
-  if (!dataSources.err) {
-    let events = mapData(dataSources.data);
+  if (!upcomingEvents.err) {
+    let events = mapData(upcomingEvents.data);
 
     yield put(dataLoaded(events));
   } else {
-    yield put(dataLoadingError(dataSources.err));
+    yield put(dataLoadingError(upcomingEvents.err));
   }
 }
 

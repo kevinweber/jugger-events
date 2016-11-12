@@ -19,7 +19,7 @@ import {
 import { loadData } from '../App/actions';
 
 import {
-  LOAD_DATA_EVENTS
+
 } from 'containers/App/constants';
 
 import { FormattedMessage } from 'react-intl';
@@ -55,7 +55,7 @@ function sortByDateDesc(data) {
 
 export class HomePage extends React.Component {
   componentDidMount() {
-    this.props.dispatch(this.props.loadData(LOAD_DATA_EVENTS));
+    this.props.dispatch(this.props.loadData());
   }
 
   render() {
@@ -133,7 +133,7 @@ function mapDispatchToProps(dispatch) {
   return {
     refreshEventsUpcoming: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadData(LOAD_DATA_EVENTS));
+      dispatch(loadData());
     },
 
     loadData,
