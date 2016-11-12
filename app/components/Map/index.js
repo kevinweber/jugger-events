@@ -14,7 +14,7 @@ const DATA_TYPES = {
     icon: 'circle',
     iconSize: 8
   },
-  charity: {
+  community: {
     color: '#ff6666',
     icon: 'star',
     iconSize: 10
