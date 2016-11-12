@@ -4,7 +4,7 @@
 
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_DATA } from 'containers/App/constants';
+import { LOAD_DATA_EVENTS } from 'containers/App/constants';
 import { dataLoaded, dataLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
@@ -61,7 +61,7 @@ export function* getData() {
  * Watches for LOAD_DATA action and calls handler
  */
 export function* getDataWatcher() {
-  while (yield take(LOAD_DATA)) {
+  while (yield take(LOAD_DATA_EVENTS)) {
     yield call(getData);
   }
 }

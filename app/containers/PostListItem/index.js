@@ -5,15 +5,12 @@
  */
 
 import React from 'react';
-import { connect } from 'react-redux';
-import { createSelector } from 'reselect';
 
 import messages from './messages';
 
 // Documentation: https://github.com/yahoo/react-intl/wiki
 import { FormattedDate, FormattedTime, FormattedMessage } from 'react-intl';
 
-import { selectCurrentUser } from 'containers/App/selectors';
 import ListItem from 'components/ListItem';
 import A from 'components/A';
 import Surtitle from 'components/Surtitle';
@@ -114,7 +111,4 @@ PostListItem.propTypes = {
   currentUser: React.PropTypes.string,
 };
 
-export default connect(createSelector(
-  selectCurrentUser(),
-  (currentUser) => ({ currentUser })
-))(PostListItem);
+export default PostListItem;

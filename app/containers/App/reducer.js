@@ -11,8 +11,9 @@
  */
 
 import {
+  LOAD_DATA_EVENTS,
+
   LOAD_DATA_SUCCESS,
-  LOAD_DATA,
   LOAD_DATA_ERROR,
 } from './constants';
 import { fromJS } from 'immutable';
@@ -21,24 +22,25 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   loading: false,
   error: false,
-  currentUser: false,
   userData: fromJS({
     repositories: false,
   }),
 });
 
 function appReducer(state = initialState, action) {
+  state.set('requestUrl', action.requestUrl);
+
   switch (action.type) {
-    case LOAD_DATA:
+    case LOAD_DATA_EVENTS:
       return state
         .set('loading', true)
         .set('error', false)
         .setIn(['userData', 'repositories'], false);
+
     case LOAD_DATA_SUCCESS:
       return state
-        .setIn(['userData', 'repositories'], action.sources)
-        .set('loading', false)
-        .set('currentUser', action.username);
+        .setIn(['userData', 'repositories'], action.events)
+        .set('loading', false);
     case LOAD_DATA_ERROR:
       return state
         .set('error', action.error)

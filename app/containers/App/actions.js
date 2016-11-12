@@ -16,7 +16,6 @@
  */
 
 import {
-  LOAD_DATA,
   LOAD_DATA_SUCCESS,
   LOAD_DATA_ERROR,
 } from './constants';
@@ -26,23 +25,21 @@ import {
  *
  * @return {object} An action object with a type of LOAD_DATA
  */
-export function loadData() {
-  return {
-    type: LOAD_DATA,
-  };
+export function loadData(type) {
+  return { type, requestUrl: "testttt" };
 }
 
 /**
  * Dispatched when the data are loaded by the request saga
  *
- * @param  {array} sources The data
+ * @param  {array} events The data
  *
  * @return {object}      An action object with a type of LOAD_DATA_SUCCESS passing the data
  */
-export function dataLoaded(sources) {
+export function dataLoaded(events) {
   return {
     type: LOAD_DATA_SUCCESS,
-    sources
+    events
   };
 }
 
@@ -56,6 +53,6 @@ export function dataLoaded(sources) {
 export function dataLoadingError(error) {
   return {
     type: LOAD_DATA_ERROR,
-    error,
+    error
   };
 }

@@ -18,6 +18,10 @@ import {
 
 import { loadData } from '../App/actions';
 
+import {
+  LOAD_DATA_EVENTS
+} from 'containers/App/constants';
+
 import { FormattedMessage } from 'react-intl';
 import PostListItem from 'containers/PostListItem';
 import Button from 'components/Button';
@@ -51,7 +55,7 @@ function sortByDateDesc(data) {
 
 export class HomePage extends React.Component {
   componentDidMount() {
-    this.props.dispatch(this.props.loadData());
+    this.props.dispatch(this.props.loadData(LOAD_DATA_EVENTS));
   }
 
   render() {
@@ -101,7 +105,7 @@ export class HomePage extends React.Component {
             <H2 className={styles.headingWithIcon}>
               <FormattedMessage {...messages.upcomingHeader} />
               <Button className={styles.refresh}>
-                <Autorenew onClick={this.props.refreshPosts} />
+                <Autorenew onClick={this.props.refreshEventsUpcoming} />
               </Button>
             </H2>
             {mainContent}
@@ -122,14 +126,14 @@ HomePage.propTypes = {
     React.PropTypes.array,
     React.PropTypes.bool,
   ]),
-  refreshPosts: React.PropTypes.func
+  refreshEventsUpcoming: React.PropTypes.func
 };
 
 function mapDispatchToProps(dispatch) {
   return {
-    refreshPosts: (evt) => {
+    refreshEventsUpcoming: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadData());
+      dispatch(loadData(LOAD_DATA_EVENTS));
     },
 
     loadData,
