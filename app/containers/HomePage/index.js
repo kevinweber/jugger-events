@@ -18,7 +18,7 @@ import {
   selectError,
 } from 'containers/App/selectors';
 
-import { loadRepos } from '../App/actions';
+import { loadData } from '../App/actions';
 
 import { FormattedMessage } from 'react-intl';
 import PostListItem from 'containers/PostListItem';
@@ -56,7 +56,7 @@ export class HomePage extends React.Component {
    * when initial state username is not null, submit the form to load repos
    */
   componentDidMount() {
-    this.props.dispatch(this.props.loadRepos());
+    this.props.dispatch(this.props.loadData());
   }
 
   render() {
@@ -134,10 +134,10 @@ function mapDispatchToProps(dispatch) {
   return {
     refreshPosts: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadRepos());
+      dispatch(loadData());
     },
 
-    loadRepos,
+    loadData,
     dispatch,
   };
 }

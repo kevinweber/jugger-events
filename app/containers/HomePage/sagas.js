@@ -4,7 +4,7 @@
 
 import { take, call, put, select, fork, cancel } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_REPOS } from 'containers/App/constants';
+import { LOAD_DATA } from 'containers/App/constants';
 import { reposLoaded, repoLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
@@ -61,10 +61,10 @@ export function* getRepos() {
 
 
 /**
- * Watches for LOAD_REPOS action and calls handler
+ * Watches for LOAD_DATA action and calls handler
  */
 export function* getReposWatcher() {
-  while (yield take(LOAD_REPOS)) {
+  while (yield take(LOAD_DATA)) {
     yield call(getRepos);
   }
 }
