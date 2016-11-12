@@ -12,14 +12,6 @@
     "message": "A 🎁 for the jugger community. By {author}."
   },
   {
-    "id": "boilerplate.components.Footer.license.message",
-    "message": "This project is licensed under the MIT license."
-  },
-  {
-    "id": "boilerplate.containers.AddEventPage.css.header",
-    "message": "Next generation CSS"
-  },
-  {
     "id": "boilerplate.containers.PostListItem.time.at",
     "message": "at"
   },
@@ -33,15 +25,7 @@
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.upcoming",
-    "message": "Upcoming events to be announced. Keep coming back. Check out past events to get a feeling when the next events will take place."
-  },
-  {
-    "id": "boilerplate.containers.HomePage.start_project.header",
-    "message": "Start your next react project in seconds"
-  },
-  {
-    "id": "boilerplate.containers.HomePage.start_project.message",
-    "message": "A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices"
+    "message": "Upcoming events to be announced. Keep coming back."
   },
   {
     "id": "boilerplate.containers.HomePage.upcoming.header",

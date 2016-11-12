@@ -12,10 +12,6 @@
     "message": "Ein 🎁 für die Jugger-Gemeinschaft. Von {author}."
   },
   {
-    "id": "boilerplate.components.Footer.license.message",
-    "message": "Dieses Projekt wird unter der MIT-Lizenz veröffentlicht."
-  },
-  {
     "id": "boilerplate.containers.AddEventPage.css.header",
     "message": "Features"
   },
@@ -33,15 +29,7 @@
   },
   {
     "id": "boilerplate.containers.HomePage.noResults.upcoming",
-    "message": "Weitere Events werden bald verkündet. Besuche diese Seite regelmäßig, um kein Event zu verpassen. Schau dir auch vergangene Events an, um ein Gefühl dafür zu bekommen, wann die nächsten Events in deiner Nähe stattfinden werden."
-  },
-  {
-    "id": "boilerplate.containers.HomePage.start_project.header",
-    "message": "Beginnen Sie Ihr nächstes React Projekt in Sekunden"
-  },
-  {
-    "id": "boilerplate.containers.HomePage.start_project.message",
-    "message": "Ein skalierendes, offline-first Fundament mit der besten DX und einem Fokus auf Performance und bewährte Methoden"
+    "message": "Weitere Events werden bald verkündet. Besuche diese Seite regelmäßig, um kein Event zu verpassen."
   },
   {
     "id": "boilerplate.containers.HomePage.upcoming.header",
