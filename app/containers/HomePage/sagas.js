@@ -11,10 +11,10 @@ import request from 'utils/request';
 
 function getRequestURL() {
   if (process.env.NODE_ENV === 'production') {
-    return 'https://kevinw.de/jugger-friends/wp-json/jugger/events';
+    return 'https://kevinw.de/jugger-friends/wp-json/jugger/events/upcoming';
   }
 
-  return 'http://localhost/wordpress/jugger-events/wp-json/jugger/events';
+  return 'http://localhost/wordpress/jugger-events/wp-json/jugger/events/upcoming';
 }
 
 function mapData(data) {
