@@ -33,3 +33,11 @@ p, label {
   cursor: pointer;
   margin-left: 10px;
 }
+
+.error {
+  font-style: italic;
+}
+
+.noResults {
+  font-style: italic;
+}
