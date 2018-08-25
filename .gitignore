@@ -5,7 +5,6 @@ app/global.config.js
 
 # Don't check auto-generated stuff into git
 coverage
-build
 node_modules
 stats.json
 
